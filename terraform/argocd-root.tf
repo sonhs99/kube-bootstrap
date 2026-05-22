@@ -20,6 +20,9 @@ resource "kubectl_manifest" "argocd_root_application" {
       destination = {
         server    = "https://kubernetes.default.svc"
         namespace = "argocd"
+        directory = {
+            recurse = true
+        }
       }
 
       syncPolicy = {
