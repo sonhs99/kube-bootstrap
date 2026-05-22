@@ -148,7 +148,7 @@ service:
     loadBalancerIP: 192.168.88.152
     externalTrafficPolicy: Local
     # -- NodePort port number for Longhorn UI. When unspecified, Longhorn selects a free port between 30000 and 32767.
-    nodePort: null
+    nodePort: 32000
     # -- Class of a load balancer implementation
     loadBalancerClass: ""
     # -- Annotation for the Longhorn UI service.

@@ -120,7 +120,7 @@ resource "talos_machine_bootstrap" "this" {
 resource "time_sleep" "wait_for_kube" {
   depends_on = [talos_machine_bootstrap.this]
 
-  create_duration = "30s"
+  create_duration = "60s"
 }
 
 resource "talos_cluster_kubeconfig" "this" {
