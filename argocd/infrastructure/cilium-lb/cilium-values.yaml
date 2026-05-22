@@ -28,7 +28,6 @@ securityContext:
       - "FOWNER"
       - "SETGID"
       - "SETUID
-
     cleanCiliumState:
       - "NET_ADMIN"
       - "SYS_ADMIN"
