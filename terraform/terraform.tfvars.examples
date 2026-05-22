@@ -1,0 +1,54 @@
+proxmox_nodes = ["pve"]
+
+cluster_name     = "homelab"
+cluster_endpoint = "https://10.0.0.1:6443"
+cluster_endpoint_ip = "10.0.0.1"
+
+gateway     = "10.0.0.1"
+cidr_prefix = 24
+dns_servers = ["8.8.8.8", "1.1.1.1"]
+
+talos_version = "1.12.6"
+talos_arch = "amd64"
+
+vm_datastore   = "local-lvm"
+iso_datastore  = "local"
+network_bridge = "vmbr0"
+
+gitops_repo_url = ""
+gitops_target_revision = ""
+gitops_root_path = ""
+
+nodes = {
+  talos-cp-01 = {
+    role         = "controlplane"
+    proxmox_node = "pve"
+    vm_id        = 1001
+    ip           = "10.0.0.1"
+    cpu          = 4
+    memory_mb    = 8192
+    disk_gb      = 64
+    mac_address  = "00:00:00:00:00:00"
+  }
+
+  talos-wk-01 = {
+    role         = "worker"
+    proxmox_node = "pve"
+    vm_id        = 1101
+    ip           = "10.0.0.2"
+    cpu          = 8
+    memory_mb    = 12288
+    disk_gb      = 256
+    mac_address  = "00:00:00:00:00:00"
+  }
+  talos-wk-02 = {
+    role         = "worker"
+    proxmox_node = "pve"
+    vm_id        = 1102
+    ip           = "10.0.0.3"
+    cpu          = 8
+    memory_mb    = 12288
+    disk_gb      = 256
+    mac_address  = "00:00:00:00:00:00"
+  }
+}

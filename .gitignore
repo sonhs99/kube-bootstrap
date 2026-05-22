@@ -1,0 +1,13 @@
+*.tfvars
+!*.tfvars.example
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+kubeconfig
+talosconfig
+*.sensitive
+cert/*
+!cert/.gitkeep
+
+argocd/arr_stack/*
