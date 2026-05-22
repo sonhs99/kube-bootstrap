@@ -10,7 +10,7 @@ spec:
     chart: csi-driver-nfs
     targetRevision: v4.9.0
     helm:
-      values:
+      values: |
         externalSnapshotter:
           enabled: true
   destination:
