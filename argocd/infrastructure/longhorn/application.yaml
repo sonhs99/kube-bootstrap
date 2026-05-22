@@ -10,7 +10,6 @@ spec:
     chart: longhorn
     targetRevision: 1.11.2
     helm:
-      releaseName: longhorn
       valueFiles:
         - longhorn-values.yaml
   destination:
