@@ -4,6 +4,6 @@ metadata:
   name: cilium-lb-announcement
 spec:
   interfaces:
-  - eth1
+  - eth0
   externalIPs: true
   loadBalancerIPs: true
