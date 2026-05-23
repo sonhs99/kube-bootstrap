@@ -12,6 +12,7 @@ spec:
     solvers:
       - dns01:
           cloudflare:
+            email: sonhs99@gmail.com
             apiTokenSecretRef:
               name: cloudflare-api-token-secret
               key: api-token
