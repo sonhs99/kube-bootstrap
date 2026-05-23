@@ -13,7 +13,7 @@ spec:
       values: |
         sealedSecrets:
           autoFetchCert: true
-          controllerName: seal-secrets-controller
+          controllerName: sealed-secrets-controller
           controllerNamespace: kube-system
   destination:
     namespace: kube-system
