@@ -18,6 +18,8 @@ spec:
   destination:
     namespace: kube-system
     server: 'https://kubernetes.default.svc'
+    label:
+      run: kubeseal-webgui
   syncPolicy:
     automated:
       prune: true
