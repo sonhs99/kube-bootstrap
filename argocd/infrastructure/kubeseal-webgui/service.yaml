@@ -6,7 +6,7 @@ metadata:
   labels:
     run: kubeseal-webgui
 spec:
-  type: LoadBalaner
+  type: LoadBalancer
   loadBalancerIP: 192.168.88.152
   externalTrafficPolicy: Local
   ports:
