@@ -18,5 +18,4 @@ spec:
     size: 4096
   issuerRef:
     name: letsencrypt-dns01-prod-issuer
-    kind: Issuer
-    group: cert-manager.io
+    kind: ClusterIssuer
