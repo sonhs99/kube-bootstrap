@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 spec:
   isCA: false
-  secretName: kingbj0429-uk-key-pair
+  secretName: lazydogs-work-key-pair
   commonName: lazydogs.work
   dnsNames:
     - lazydogs.work
