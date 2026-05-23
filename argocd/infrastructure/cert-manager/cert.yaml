@@ -2,7 +2,6 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: lazydogs-work-cert
-  namespace: kube-system
 spec:
   isCA: false
   secretName: lazydogs-work-key-pair
