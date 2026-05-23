@@ -11,3 +11,4 @@ cert/*
 !cert/.gitkeep
 
 argocd/arr_stack/*
+/secrets/*
