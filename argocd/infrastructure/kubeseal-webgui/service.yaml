@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: kubeseal-webgui
   namespace: kube-system
-  labels:
-    run: kubeseal-webgui
 spec:
   type: LoadBalancer
   loadBalancerIP: 192.168.88.153
@@ -15,4 +13,4 @@ spec:
     nodePort: 31080
     name: http
   selector:
-    app: kubeseal-webgui
+    app.kubernetes.io/name: kubeseal-webgui
