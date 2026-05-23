@@ -12,9 +12,8 @@ spec:
     helm:
       values: |
         sealedSecrets:
-          autoFetchCert: true
-          controllerName: sealed-secrets-controller
-          controllerNamespace: kube-system
+          namespace: kube-system
+          serviceName: sealed-secrets-controller
         service:
           type: ClusterIP
           port: 80
