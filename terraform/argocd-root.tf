@@ -15,9 +15,6 @@ resource "kubectl_manifest" "argocd_root_application" {
         repoURL        = var.gitops_repo_url
         targetRevision = var.gitops_target_revision
         path           = var.gitops_root_path
-        directory = {
-            recurse = true
-        }
       }
 
       destination = {
