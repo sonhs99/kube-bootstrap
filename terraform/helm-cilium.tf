@@ -11,7 +11,7 @@ resource "kubernetes_namespace" "cilium" {
 
 resource "helm_release" "cilium" {
   name             = "cilium"
-  namespace        = "kube-system"
+  namespace        = "cilium"
   repository       = "https://helm.cilium.io/"
   chart            = "cilium"
   version          = "1.18.0"
