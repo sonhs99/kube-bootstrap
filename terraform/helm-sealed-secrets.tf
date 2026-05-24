@@ -1,7 +1,7 @@
 resource "kubernetes_secret" "sealed_secrets_cert" {
   metadata {
     name      = "sealed-secrets-key"
-    namespace = "kube-system"
+    namespace = "sealed-secrets"
   }
   type = "kubernetes.io/tls"
   data = {
@@ -15,7 +15,7 @@ resource "kubernetes_secret" "sealed_secrets_cert" {
 
 resource "helm_release" "sealed_secrets" {
   name             = "sealed-secrets-controller"
-  namespace        = "kube-system"
+  namespace        = "sealed-secrets"
   repository       = "https://bitnami-labs.github.io/sealed-secrets"
   chart            = "sealed-secrets"
   version          = "2.18.5"
