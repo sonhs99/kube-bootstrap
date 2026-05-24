@@ -11,4 +11,4 @@ spec:
   rules:
   - backendRefs:
     - name: hubble-ui
-      port: 80
+      port: 8081
