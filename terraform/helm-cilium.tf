@@ -1,17 +1,6 @@
-resource "kubernetes_namespace" "cilium" {
-  metadata {
-    name = "cilium"
-  }
-
-  depends_on = [
-    kubectl_manifest.gateway_api_crds,
-    time_sleep.wait_for_kube
-  ]
-}
-
 resource "helm_release" "cilium" {
   name             = "cilium"
-  namespace        = "cilium"
+  namespace        = "kube-system"
   repository       = "https://helm.cilium.io/"
   chart            = "cilium"
   version          = "1.18.0"
@@ -113,5 +102,5 @@ resource "helm_release" "cilium" {
     ]
   }
 
-  depends_on = [kubernetes_namespace.cilium]
+  depends_on = [time_sleep.wait_for_kube]
 }

@@ -4,7 +4,7 @@ resource "kubernetes_namespace" "sealed_secrets" {
   }
 
   depends_on = [
-    helm_release.cilium
+    time_sleep.wait_for_kube,
   ]
 }
 
@@ -18,10 +18,7 @@ resource "kubernetes_secret" "sealed_secrets_cert" {
     "tls.crt" = file("../cert/sealed-secrets-key.pub")
     "tls.key" = file("../cert/sealed-secrets-key.pem")
   }
-  depends_on = [
-    helm_release.cilium,
-    kubernetes_namespace.sealed_secrets
-  ]
+  depends_on = [time_sleep.wait_for_kube]
 }
 
 resource "helm_release" "sealed_secrets" {
@@ -38,8 +35,8 @@ resource "helm_release" "sealed_secrets" {
   })]
 
   depends_on = [
-    time_sleep.wait_for_kube,
     kubernetes_secret.sealed_secrets_cert,
-    kubernetes_namespace.sealed_secrets
+    kubernetes_namespace.sealed_secrets,
+    helm_release.cilium
   ]
 }
