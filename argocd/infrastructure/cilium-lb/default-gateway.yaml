@@ -16,7 +16,8 @@ spec:
     tls:
       mode: Terminate
       certificateRefs:
-      - name: lazydogs-work-key-pair
+      - group: ''
+        name: lazydogs-work-key-pair
         kind: Secret
     allowedRoutes:
       namespaces:
@@ -35,12 +36,17 @@ metadata:
   namespace: default
 spec:
   parentRefs:
-    - name: gateway-default # 위의 Gateway와 연결
-      sectionName: http # HTTP 리스너에만 적용
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      sectionName: http 
   rules:
     - filters:
         - type: RequestRedirect
           requestRedirect:
             scheme: https
             port: 443
-            statusCode: 301 # 영구 리다이렉트 코드
+            statusCode: 301
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
