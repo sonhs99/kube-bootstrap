@@ -7,12 +7,12 @@ gatewayAPI:
   enabled: true
 l2announcements:
   enabled: true
+externalIPs:
+  enabled: true
 
 k8sServiceHost: "localhost"
 k8sServicePort: 7445
 
-externalIPs:
-  enabled: true
 
 securityContext:
   capabilities:
@@ -51,7 +51,8 @@ hubble:
   ui:
     enabled: true
     service:
-      type: "NodePort"
+      type: "LoadBalancer"
+      loadBalancerIP: 192.168.88.154
       nodePort: 31000
   metrics:
       enableOpenMetrics: true
