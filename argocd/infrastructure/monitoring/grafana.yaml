@@ -9,15 +9,6 @@ spec:
     repoURL: https://grafana.github.io/helm-charts
     targetRevision: 10.5.15
     chart: grafana
-    helm:
-      values: |
-        datasources:
-          - name: Prometheus
-            type: prometheus
-            access: proxy
-            url: http://prometheus-server.monitoring.svc:80
-            isDefault: true
-            editable: true
   destination:
     namespace: monitoring
     server: https://kubernetes.default.svc
