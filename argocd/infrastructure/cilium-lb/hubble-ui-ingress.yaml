@@ -5,10 +5,19 @@ metadata:
   namespace: kube-system
 spec:
   parentRefs:
-  - name: gateway-internal
+  - group: gateway.networking.k8s.io	
+    kind: Gateway	
+    name: gateway-internal
     namespace: default
+    weight: 1	
   hostnames: ["hubble.internal.lazydogs.work"]
   rules:
   - backendRefs:
-    - name: hubble-ui
+    - group: ''	
+      kind: Service	
+      name: hubble-ui
       port: 80
+    matches:	
+      - path:	
+          type: PathPrefix	
+          value: /
