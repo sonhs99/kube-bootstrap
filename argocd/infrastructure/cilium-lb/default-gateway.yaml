@@ -9,10 +9,28 @@ spec:
     - type: IPAddress
       value: 192.168.88.151
   listeners:
-  - name: default
+  - name: https
+    protocol: HTTPS
+    port: 443
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - name: lazydogs-work-key-pair
+        kind: Secret
+    allowedRoutes:
+      kinds:
+      - group: gateway.networking.k8s.io
+        kind: HTTPRoute
+  - name: http
     hostname: "*.lazydogs.work"
     port: 80
     protocol: HTTP
     allowedRoutes:
-      namespaces:
-        from: All
+      - group: gateway.networking.k8s.io
+        kind: HTTPRoute
+    routes:
+      filters:
+      - type: RequestRedirect
+        requestRedirect:
+          scheme: https
+          statusCode: 301
