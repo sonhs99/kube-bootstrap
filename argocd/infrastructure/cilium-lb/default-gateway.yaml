@@ -38,6 +38,7 @@ spec:
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
+      name: gateway-default
       sectionName: http 
   rules:
     - filters:
