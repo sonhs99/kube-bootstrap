@@ -12,5 +12,11 @@ spec:
   hostnames: ["hubble.internal.lazydogs.work"]
   rules:
   - backendRefs:
-    - name: hubble-ui
-      port: 80
+      - group: ''	
+        kind: Service	
+        name: hubble-ui
+        port: 80
+    matches:
+      - path:
+          type: PathPrefix
+          value: /
