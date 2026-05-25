@@ -19,10 +19,8 @@ spec:
       - name: lazydogs-work-key-pair
         kind: Secret
     allowedRoutes:
-      kinds:
-      - kind: HTTPRoute
-        namespaces:
-          from: All
+      namespaces:
+        from: All
   - name: http
     port: 80
     protocol: HTTP
