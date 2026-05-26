@@ -11,10 +11,9 @@ spec:
       chart: kube-prometheus-stack
       helm:
           valueFiles:
-            - $repo/kube-prometheus-stack-values.yaml
+            - $repo/argocd/infrastructure/monitoring/kube-prometheus-stack-values.yaml
     - repoURL: https://github.com/sonhs99/kube-bootstrap.git
       targetRevision: main
-      path: argocd/infrastructure/monitoring
       ref: repo
 
   destination:
