@@ -30,7 +30,6 @@ resource "helm_release" "argocd" {
       server = {
         service = {
           type = "NodePort"
-          nodePort = 30001
         }
       }
 
