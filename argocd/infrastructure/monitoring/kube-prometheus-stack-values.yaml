@@ -1,10 +1,10 @@
-alertmanager:
-  service:
-    type: LoadBalancer
-    port: 80
-    targetPort: 82
-    loadBalancerIP: "192.168.88.156"
-    nodePort: null
+# alertmanager:
+#   service:
+#     type: LoadBalancer
+#     port: 80
+#     targetPort: 82
+#     loadBalancerIP: "192.168.88.156"
+#     nodePort: null
 
 grafana:
   defaultDashboardsTimezone: Asia/Seoul
