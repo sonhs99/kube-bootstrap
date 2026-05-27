@@ -30,6 +30,7 @@ resource "helm_release" "argocd" {
       server = {
         service = {
           type = "NodePort"
+          nodePort = 30001
         }
       }
 
@@ -48,12 +49,7 @@ resource "helm_release" "argocd" {
   ]
 
   lifecycle {
-    ignore_changes = [
-      values,
-      version,
-      chart,
-      repository,
-    ]
+    ignore_changes = all
   }
   
   depends_on = [

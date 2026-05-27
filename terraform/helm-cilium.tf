@@ -74,7 +74,7 @@ resource "helm_release" "cilium" {
           enabled = true
           service = {
             type = "NodePort"
-            nodePort = 31000
+            nodePort = 30000
           }
         }
         metrics = {
@@ -94,12 +94,7 @@ resource "helm_release" "cilium" {
   ]
 
   lifecycle {
-    ignore_changes = [
-      values,
-      version,
-      chart,
-      repository,
-    ]
+    ignore_changes = all
   }
 
   depends_on = [time_sleep.wait_for_kube]

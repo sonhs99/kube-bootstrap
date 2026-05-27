@@ -1,19 +1,14 @@
 # alertmanager:
 #   service:
-#     type: LoadBalancer
-#     port: 80
-#     targetPort: 82
-#     loadBalancerIP: "192.168.88.156"
+#     type: NodePort
 #     nodePort: null
 
 grafana:
   defaultDashboardsTimezone: Asia/Seoul
   adminPassword: prom-operator
   service:
-    type: LoadBalancer
-    port: 80
-    loadBalancerIP: "192.168.88.156"
-    nodePort: null
+    type: NodePort
+    nodePort: 30003
 
 prometheus:
   prometheusSpec:

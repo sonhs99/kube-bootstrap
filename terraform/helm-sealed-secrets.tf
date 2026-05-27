@@ -34,6 +34,10 @@ resource "helm_release" "sealed_secrets" {
     keyrenewperiod = "0"
   })]
 
+  lifecycle {
+    ignore_changes = all
+  }
+
   depends_on = [
     kubernetes_secret.sealed_secrets_cert,
     kubernetes_namespace.sealed_secrets,

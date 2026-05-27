@@ -15,10 +15,8 @@ spec:
           namespace: sealed-secrets
           serviceName: sealed-secrets-controller
         service:
-          type: LoadBalancer
-          port: 80
-          loadBalancerIP: "192.168.88.153"
-          nodePort: null
+          type: NodePort
+          nodePort: 30004
   destination:
     namespace: sealed-secrets
     server: https://kubernetes.default.svc

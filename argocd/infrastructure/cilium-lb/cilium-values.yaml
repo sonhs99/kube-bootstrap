@@ -51,9 +51,8 @@ hubble:
   ui:
     enabled: true
     service:
-      type: "LoadBalancer"
-      loadBalancerIP: 192.168.88.154
-      nodePort: 31000
+      type: NodePort
+      nodePort: 30000
   metrics:
       enableOpenMetrics: true
       enabled:

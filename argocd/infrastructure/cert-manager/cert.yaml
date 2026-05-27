@@ -3,6 +3,8 @@ kind: Certificate
 metadata:
   name: lazydogs-work-cert
   namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   isCA: false
   secretName: lazydogs-work-key-pair
