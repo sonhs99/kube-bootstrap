@@ -110,6 +110,6 @@ spec:
         - name: tun
           hostPath:
             path: /dev/net/tun
-        - name: arr-configmap
+        - name: nfs-auth
           configMap:
-            name: arr-configmap
+            name: nfs-auth
