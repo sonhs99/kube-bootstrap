@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: downloader
   namespace: media
+  labels:
+    pod-security.kubernetes.io/enforce: privileged
 spec:
   replicas: 1
   selector:
