@@ -20,12 +20,12 @@ spec:
         - name: PUID
           valueFrom:
             configMapKeyRef:
-              name: arr-configmap
+              name: nfs-auth
               key: UID
         - name: PGID
           valueFrom:
             configMapKeyRef:
-              name: arr-configmap
+              name: nfs-auth
               key: GID
         volumeMounts:
         - name: config
