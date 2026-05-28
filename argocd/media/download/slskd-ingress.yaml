@@ -15,7 +15,7 @@ spec:
       - group: ''	
         kind: Service	
         name: slskd
-        port: 80
+        port: 443
         weight: 1
     matches:
       - path:
