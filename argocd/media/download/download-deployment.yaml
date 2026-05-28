@@ -1,0 +1,115 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: downloader
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qbittorrent
+  template:
+    metadata:
+      labels:
+        app: qbittorrent
+    spec:
+      containers:
+        - name: qbittorrent
+          image: lscr.io/linuxserver/qbittorrent
+          resources:
+            limits:
+              memory: "2Gi"
+            requests:
+              memory: "512Mi"
+          env:
+          - name: PUID
+            valueFrom:
+              configMapKeyRef:
+                name: nfs-auth
+                key: UID
+          - name: PGID
+            valueFrom:
+              configMapKeyRef:
+                name: nfs-auth
+                key: GID
+          volumeMounts:
+            - name: qbittorrent-config
+              mountPath: /config
+            - name: downloads
+              mountPath: /downloads
+              subPath: qbittorrent
+          ports:
+            - containerPort: 8080
+              name: qbitt-http
+
+        - name: slskd
+          image: slskd/slskd:latest
+          env:
+            - name: SLSKD_REMOTE_CONFIGURATION
+              value: "true"
+            - name: SLSKD_SHARED_DIR
+              value: "/mnt/music"
+          volumeMounts:
+            - name: slskd-config
+              mountPath: /app
+            - name: media
+              mountPath: /mnt/music
+              subPath: Music
+            - name: downloads
+              mountPath: /downloads
+              subPath: soulseek
+          ports:
+            - containerPort: 5030
+              name: slskd-http
+            - containerPort: 5031
+              name: slskd-https
+            - containerPort: 50300
+              name: slskd-listen
+
+        - name: gluetun
+          image: ghcr.io/qdm12/gluetun:v3.40.0
+          env:
+            - name: VPN_SERVICE_PROVIDER
+              value: "mullvad"
+            - name: VPN_TYPE
+              value: "wireguard"
+            - name: FIREWALL_INPUT_PORTS
+              value: "50413,50300,8080,5080,5030,5031"  # torrent port + web UI port
+            - name: FIREWALL_OUTBOUND_SUBNETS
+              value: "192.168.0.0/16,10.0.0.0/8"
+            - name: DNS_KEEP_NAMESERVER
+              value: "on"
+            - name: DOT
+              value: "off"
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          volumeMounts:
+            - name: tun
+              mountPath: /dev/net/tun
+              volumeMounts:
+            - name: mullvad-config-secret
+              mountPath: "/gluetun/wireguard"
+      volumes:
+        - name: mullvad-config-secret
+          secret:
+            secretName: mullvad-config-secret
+        - name: media
+          persistentVolumeClaim:
+            claimName: nfs-media
+        - name: qbittorrent-config
+          persistentVolumeClaim:
+            claimName: qbittorrent-config
+        - name: slskd-config
+          persistentVolumeClaim:
+            claimName: slskd-config
+        - name: downloads
+          persistentVolumeClaim:
+            claimName: nfs-downloads
+        - name: tun
+          hostPath:
+            path: /dev/net/tun
+        - name: arr-configmap
+          configMap:
+            name: arr-configmap

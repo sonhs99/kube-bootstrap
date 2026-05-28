@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: download-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/sonhs99/kube-bootstrap.git
+    targetRevision: main
+    path: "argocd/media/download"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: media
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
