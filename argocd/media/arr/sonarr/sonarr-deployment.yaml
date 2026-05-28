@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarr
+  template:
+    metadata:
+      labels:
+        app: sonarr
+    spec:
+      containers:
+      - name: sonarr
+        image: lscr.io/linuxserver/sonarr
+        env:
+        - name: PUID
+          valueFrom:
+            configMapKeyRef:
+              name: nfs-auth
+              key: UID
+        - name: PGID
+          valueFrom:
+            configMapKeyRef:
+              name: nfs-auth
+              key: GID
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: videos
+          mountPath: /anime
+        - name: downloads
+          mountPath: /downloads
+        ports:
+        - containerPort: 8989
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: sonarr-config
+      - name: videos
+        persistentVolumeClaim:
+          claimName: nfs-media
+      - name: downloads
+        persistentVolumeClaim:
+          claimName: nfs-downloads
+      - name: nfs-auth
+        configMap:
+          name: nfs-auth

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prowlarr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prowlarr
+  template:
+    metadata:
+      labels:
+        app: prowlarr
+    spec:
+      containers:
+      - name: prowlarr
+        image: lscr.io/linuxserver/prowlarr
+        env:
+        - name: PUID
+          valueFrom:
+            configMapKeyRef:
+              name: arr-configmap
+              key: UID
+        - name: PGID
+          valueFrom:
+            configMapKeyRef:
+              name: arr-configmap
+              key: GID
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        ports:
+        - containerPort: 9696
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: prowlarr-config
+      - name: nfs-auth
+        configMap:
+          name: nfs-auth
