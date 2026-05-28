@@ -17,6 +17,11 @@ spec:
         name: slskd
         port: 80
         weight: 1
+      - group: ''	
+        kind: Service	
+        name: slskd
+        port: 443
+        weight: 1
     matches:
       - path:
           type: PathPrefix
