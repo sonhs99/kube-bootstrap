@@ -22,4 +22,4 @@ spec:
     - port: 80
       targetPort: 5030
   selector:
-    app: slskd
+    app: qbittorrent
