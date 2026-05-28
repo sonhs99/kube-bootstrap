@@ -10,7 +10,7 @@ spec:
     targetRevision: main
     path: "argocd/media/server"
     directory:
-      recursive: true
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: media
