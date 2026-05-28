@@ -21,7 +21,5 @@ spec:
   ports:
     - port: 80
       targetPort: 5030
-    - port: 443
-      targetPort: 5031
   selector:
     app: slskd
