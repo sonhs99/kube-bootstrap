@@ -15,7 +15,7 @@ spec:
       - group: ''	
         kind: Service	
         name: jellyfin
-        port: 8096
+        port: 80
         weight: 1
     matches:
       - path:
@@ -39,7 +39,7 @@ spec:
       - group: ''	
         kind: Service	
         name: jellyfin
-        port: 8096
+        port: 80
         weight: 1
     matches:
       - path:
