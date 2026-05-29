@@ -21,7 +21,7 @@ spec:
           mountPath: /data
         - name: musics
           mountPath: /music
-          subPath: /Music
+          subPath: Music
         ports:
         - containerPort: 4533
       volumes:
