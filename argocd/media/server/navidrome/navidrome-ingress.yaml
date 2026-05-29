@@ -37,8 +37,8 @@ spec:
   rules:
   - backendRefs:
       - group: ''	
-        kind: navidrome	
-        name: jellyfin
+        kind: Service	
+        name: navidrome
         port: 80
         weight: 1
     matches:
