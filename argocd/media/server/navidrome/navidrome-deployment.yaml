@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: navidrome
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: navidrome
+  template:
+    metadata:
+      labels:
+        app: navidrome
+    spec:
+      containers:
+      - name:  navidrome
+        image: deluan/navidrome
+        volumeMounts:
+        - name: config
+          mountPath: /data
+        - name: musics
+          mountPath: /music
+          subPath: /Music
+        ports:
+        - containerPort: 4533
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: navidrome-config
+      - name: musics
+        persistentVolumeClaim:
+          claimName: nfs-media
