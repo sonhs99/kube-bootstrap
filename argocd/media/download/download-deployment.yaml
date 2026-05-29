@@ -38,6 +38,9 @@ spec:
             - name: downloads
               mountPath: /downloads
               subPath: qbittorrent
+          ports:
+            - containerPort: 8080
+              name: qbitt-http
 
         - name: slskd
           image: slskd/slskd:latest
@@ -55,6 +58,13 @@ spec:
             - name: downloads
               mountPath: /downloads
               subPath: soulseek
+          ports:
+            - containerPort: 5030
+              name: slskd-http
+            - containerPort: 5031
+              name: slskd-https
+            - containerPort: 50300
+              name: slskd-listen
 
         - name: gluetun
           image: ghcr.io/qdm12/gluetun:v3.40.0
@@ -80,15 +90,6 @@ spec:
               mountPath: /dev/net/tun
             - name: mullvad-config-secret
               mountPath: "/gluetun/wireguard"
-          ports:
-            - containerPort: 5030
-              name: slskd-http
-            - containerPort: 5031
-              name: slskd-https
-            - containerPort: 50300
-              name: slskd-listen
-            - containerPort: 8080
-              name: qbitt-http
       volumes:
         - name: mullvad-config-secret
           secret:
