@@ -18,7 +18,7 @@ spec:
         image: ghcr.io/seerr-team/seerr
         volumeMounts:
         - name: config
-          mountPath: /config
+          mountPath: /app/config
         ports:
         - containerPort: 5055
       volumes:
