@@ -27,6 +27,11 @@ spec:
             secretKeyRef:
               name: nfs-auth
               key: GID
+        - name: LIDARR__AUTH__APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: arr-token
+              key: lidarr
         volumeMounts:
         - name: config
           mountPath: /config
@@ -49,3 +54,6 @@ spec:
       - name: nfs-auth
         secret:
           secretName: nfs-auth
+      - name: arr-token
+        secret:
+          secretName: arr-token-secret
