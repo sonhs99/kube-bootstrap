@@ -38,4 +38,4 @@ spec:
           claimName: prowlarr-config
       - name: nfs-auth
         secret:
-          name: nfs-auth
+          secretName: nfs-auth

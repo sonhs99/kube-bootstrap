@@ -48,4 +48,4 @@ spec:
           claimName: nfs-downloads
       - name: nfs-auth
         secret:
-          name: nfs-auth
+          secretName: nfs-auth
