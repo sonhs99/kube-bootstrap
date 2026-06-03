@@ -19,7 +19,7 @@ spec:
         env:
         - name: PUID
           valueFrom:
-            configMapKeyRef:
+            secretKeyRef:
               name: nfs-auth
               key: UID
         - name: PGID

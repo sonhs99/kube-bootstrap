@@ -24,7 +24,7 @@ spec:
               key: UID
         - name: PGID
           valueFrom:
-            configMapKeyRef:
+            secretKeyRef:
               name: nfs-auth
               key: GID
         volumeMounts:
