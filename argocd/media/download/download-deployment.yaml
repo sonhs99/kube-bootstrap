@@ -24,13 +24,13 @@ spec:
           env:
           - name: PUID
             valueFrom:
-              configMapKeyRef:
-                name: nfs-auth
+              secretKeyRef:
+                name: nfs-auth-secret
                 key: UID
           - name: PGID
             valueFrom:
-              configMapKeyRef:
-                name: nfs-auth
+              secretKeyRef:
+                name: nfs-auth-secret
                 key: GID
           volumeMounts:
             - name: qbittorrent-config
@@ -109,6 +109,6 @@ spec:
         - name: tun
           hostPath:
             path: /dev/net/tun
-        - name: nfs-auth
-          configMap:
-            name: nfs-auth
+        - name: nfs-auth-secret
+          secret:
+            secretName: nfs-auth-secret
