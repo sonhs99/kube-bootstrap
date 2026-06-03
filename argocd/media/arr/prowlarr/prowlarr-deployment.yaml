@@ -19,7 +19,7 @@ spec:
         env:
         - name: PUID
           valueFrom:
-            configMapKeyRef:
+            secretKeyRef:
               name: nfs-auth
               key: UID
         - name: PGID
@@ -37,5 +37,5 @@ spec:
         persistentVolumeClaim:
           claimName: prowlarr-config
       - name: nfs-auth
-        configMap:
+        secret:
           name: nfs-auth
