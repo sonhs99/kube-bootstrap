@@ -30,8 +30,8 @@ spec:
         - name: RADARR__AUTH__APIKEY
           valueFrom:
             secretKeyRef:
-              name: arr-token
-              key: lidarr
+              name: arr-token-token
+              key: radarr
         volumeMounts:
         - name: config
           mountPath: /config
@@ -54,6 +54,6 @@ spec:
       - name: nfs-auth
         secret:
           secretName: nfs-auth
-      - name: arr-token
+      - name: arr-token-secret
         secret:
           secretName: arr-token-secret

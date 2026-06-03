@@ -30,7 +30,7 @@ spec:
         - name: LIDARR__AUTH__APIKEY
           valueFrom:
             secretKeyRef:
-              name: arr-token
+              name: arr-token-secret
               key: lidarr
         volumeMounts:
         - name: config
@@ -54,6 +54,6 @@ spec:
       - name: nfs-auth
         secret:
           secretName: nfs-auth
-      - name: arr-token
+      - name: arr-token-secret
         secret:
           secretName: arr-token-secret
