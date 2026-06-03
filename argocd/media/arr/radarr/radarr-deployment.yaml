@@ -30,7 +30,7 @@ spec:
         - name: RADARR__AUTH__APIKEY
           valueFrom:
             secretKeyRef:
-              name: arr-token-token
+              name: arr-token-secret
               key: radarr
         volumeMounts:
         - name: config
