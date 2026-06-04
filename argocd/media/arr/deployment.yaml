@@ -1,0 +1,194 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arr-stack
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arr
+  template:
+    metadata:
+      labels:
+        app: arr
+    spec:
+      containers:
+      - name: prowlarr
+        image: lscr.io/linuxserver/prowlarr
+        env:
+        - name: PUID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: UID
+        - name: PGID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: GID
+        - name: PROWLARR__AUTH__APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: arr-token-secret
+              key: prowlarr
+        - name: PROWLARR__AUTH__REQUIRED
+          value: DisabledForLocalAddresses
+        - name: PROWLARR__AUTH__METHOD
+          value: External
+        volumeMounts:
+        - name: prowlarr-config
+          mountPath: /config
+        ports:
+        - containerPort: 9696
+
+      - name: lidarr
+        image: lscr.io/linuxserver/lidarr
+        env:
+        - name: PUID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: UID
+        - name: PGID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: GID
+        - name: LIDARR__AUTH__APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: arr-token-secret
+              key: lidarr
+        - name: LIDARR__AUTH__REQUIRED
+          value: DisabledForLocalAddresses
+        - name: LIDARR__AUTH__METHOD
+          value: External
+        volumeMounts:
+        - name: lidarr-config
+          mountPath: /config
+        - name: media
+          mountPath: /media
+        - name: downloads
+          mountPath: /downloads
+        ports:
+        - containerPort: 8686
+
+      - name: radarr
+        image: lscr.io/linuxserver/radarr
+        env:
+        - name: PUID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: UID
+        - name: PGID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: GID
+        - name: RADARR__AUTH__APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: arr-token-secret
+              key: radarr
+        - name: RADARR__AUTH__REQUIRED
+          value: DisabledForLocalAddresses
+        - name: RADARR__AUTH__METHOD
+          value: External
+        volumeMounts:
+        - name: radarr-config
+          mountPath: /config
+        - name: media
+          mountPath: /media
+        - name: downloads
+          mountPath: /downloads
+        ports:
+        - containerPort: 7878
+
+      - name: sonarr
+        image: lscr.io/linuxserver/sonarr
+        env:
+        - name: PUID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: UID
+        - name: PGID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: GID
+        - name: SONARR__AUTH__APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: arr-token-secret
+              key: sonarr
+        - name: SONARR__AUTH__REQUIRED
+          value: DisabledForLocalAddresses
+        - name: SONARR__AUTH__METHOD
+          value: External
+        volumeMounts:
+        - name: sonarr-config
+          mountPath: /config
+        - name: media
+          mountPath: /media
+        - name: downloads
+          mountPath: /downloads
+        ports:
+        - containerPort: 8989
+      - name: gluetun
+        image: ghcr.io/qdm12/gluetun:v3.40.0
+        env:
+        - name: VPN_SERVICE_PROVIDER
+          value: "mullvad"
+        - name: VPN_TYPE
+          value: "wireguard"
+        - name: FIREWALL_INPUT_PORTS
+          value: "9696,8686,7878,8989" 
+        - name: FIREWALL_OUTBOUND_SUBNETS
+          value: "192.168.0.0/16,10.0.0.0/8"
+        - name: DNS_KEEP_NAMESERVER
+          value: "on"
+        - name: DOT
+          value: "off"
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+        volumeMounts:
+          - name: tun
+            mountPath: /dev/net/tun
+          - name: mullvad-config-secret
+            mountPath: "/gluetun/wireguard"
+      volumes:
+      - name: prowlarr-config
+        persistentVolumeClaim:
+          claimName: prowlarr-config
+      - name: lidarr-config
+        persistentVolumeClaim:
+          claimName: lidarr-config
+      - name: radarr-config
+        persistentVolumeClaim:
+          claimName: radarr-config
+      - name: sonarr-config
+        persistentVolumeClaim:
+          claimName: sonarr-config
+      - name: media
+        persistentVolumeClaim:
+          claimName: nfs-media
+      - name: downloads
+        persistentVolumeClaim:
+          claimName: nfs-downloads
+      - name: nfs-auth
+        secret:
+          secretName: nfs-auth
+      - name: arr-token-secret
+        secret:
+          secretName: arr-token-secret
+      - name: mullvad-config-secret
+        secret:
+          secretName: mullvad-config-secret
+      - name: tun
+        hostPath:
+          path: /dev/net/tun

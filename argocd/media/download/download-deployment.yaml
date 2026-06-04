@@ -74,7 +74,7 @@ spec:
             - name: VPN_TYPE
               value: "wireguard"
             - name: FIREWALL_INPUT_PORTS
-              value: "50413,50300,8080,5080,5030,5031"  # torrent port + web UI port
+              value: "50413,50300,8080,5080,5030,5031"
             - name: FIREWALL_OUTBOUND_SUBNETS
               value: "192.168.0.0/16,10.0.0.0/8"
             - name: DNS_KEEP_NAMESERVER
