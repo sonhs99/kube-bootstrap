@@ -34,7 +34,7 @@ spec:
               key: radarr
         - name: RADARR__AUTH__REQUIRED
           value: DisabledForLocalAddresses
-        - name: RADLARR__AUTH__METHOD
+        - name: RADARR__AUTH__METHOD
           value: External
         volumeMounts:
         - name: config
