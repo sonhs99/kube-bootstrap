@@ -16,7 +16,35 @@ resource "helm_release" "argocd" {
   version    = "7.7.16"
 
   values = [
-    yamlencode(file("../argocd/infrastructure/argocd/argocd-values.yaml"))
+    yamlencode({
+      global = {
+        domain = "argocd.internal.lazydog.work"
+      }
+
+      configs = {
+        params = {
+          "server.insecure" = true
+        }
+      }
+
+      server = {
+        service = {
+          type = "NodePort"
+        }
+      }
+
+      controller = {
+        replicas = 1
+      }
+
+      repoServer = {
+        replicas = 1
+      }
+
+      applicationSet = {
+        replicas = 1
+      }
+    })
   ]
 
   lifecycle {
