@@ -32,6 +32,10 @@ spec:
             secretKeyRef:
               name: arr-token-secret
               key: prowlarr
+        - name: PROWLARR__AUTH__REQUIRED
+          value: DisabledForLocalAddresses
+        - name: PROWLARR__AUTH__METHOD
+          value: External
         volumeMounts:
         - name: config
           mountPath: /config

@@ -32,6 +32,10 @@ spec:
             secretKeyRef:
               name: arr-token-secret
               key: radarr
+        - name: RADARR__AUTH__REQUIRED
+          value: DisabledForLocalAddresses
+        - name: RADLARR__AUTH__METHOD
+          value: External
         volumeMounts:
         - name: config
           mountPath: /config

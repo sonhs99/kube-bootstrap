@@ -32,6 +32,10 @@ spec:
             secretKeyRef:
               name: arr-token-secret
               key: sonarr
+        - name: SONARR__AUTH__REQUIRED
+          value: DisabledForLocalAddresses
+        - name: SONARR__AUTH__METHOD
+          value: External
         volumeMounts:
         - name: config
           mountPath: /config
