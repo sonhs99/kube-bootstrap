@@ -22,11 +22,11 @@ spec:
         - name: PASTEY_DEFAULT_THEME
           value: Dark
         - name: PASTEY_BEHIND_PROXY
-          value: true
+          value: "true"
         - name: PASTEY_FORCE_SHOW_RECENT
-          value: true
+          value: "true"
         - name: PASTEY_RESTRICT_PASTING
-          value: true
+          value: "true"
         - name: PASTEY_WHITELIST_CIDR
           value: 127.0.0.1/32,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
         - name: PASTEY_RECENT_PASTES

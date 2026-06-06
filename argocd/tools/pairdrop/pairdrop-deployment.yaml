@@ -18,12 +18,12 @@ spec:
         image: lscr.io/linuxserver/pairdrop:latest
         env:
         - name: WS_FALLBACK
-          value: false
+          value: "false"
         - name: RATE_LIMIT
-          value: false
+          value: "false"
         - name: RTC_CONFIG
-          value: false
+          value: "false"
         - name: DEBUG_MODE
-          value: false
+          value: "false"
         ports:
         - containerPort: 3000
