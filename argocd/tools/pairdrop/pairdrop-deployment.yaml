@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pairdrop
+  namespace: tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pairdrop
+  template:
+    metadata:
+      labels:
+        app: pairdrop
+    spec:
+      containers:
+      - name: it-tools
+        image: lscr.io/linuxserver/pairdrop:latest
+        env:
+        - name: WS_FALLBACK
+          value: false
+        - name: RATE_LIMIT
+          value: false
+        - name: RTC_CONFIG
+          value: false
+        - name: DEBUG_MODE
+          value: false
+        ports:
+        - containerPort: 3000

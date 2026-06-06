@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pastey
+  namespace: tools
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5000
+      targetPort: 80
+  selector:
+    app: pastey

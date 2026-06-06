@@ -1,0 +1,23 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: easy_wg_mikrotik-internal-route
+  namespace: tools
+spec:
+  parentRefs:
+  - group: gateway.networking.k8s.io	
+    kind: Gateway	
+    name: gateway-internal
+    namespace: default
+  hostnames: ["wg.internal.lazydogs.work"]
+  rules:
+  - backendRefs:
+      - group: ''	
+        kind: Service	
+        name: easy_wg_mikrotik
+        port: 80
+        weight: 1
+    matches:
+      - path:
+          type: PathPrefix
+          value: /

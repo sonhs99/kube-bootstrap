@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wallos
+  namespace: tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wallos
+  template:
+    metadata:
+      labels:
+        app: wallos
+    spec:
+      containers:
+      - name: wallos
+        image: bellamy/wallos:latest
+        env:
+        - name: TZ
+          value: 'Asia/Seoul'
+        volumeMounts:
+        - name: config
+          mountPath: /var/www/html/db
+          subPath: db
+        - name: config
+          mountPath: /var/www/html/images/uploads/logos
+          subPath: logos
+        ports:
+        - containerPort: 80
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: wallos-config

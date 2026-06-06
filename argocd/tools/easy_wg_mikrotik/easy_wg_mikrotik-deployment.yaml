@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: easy_wg_mikrotik
+  namespace: tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: easy_wg_mikrotik
+  template:
+    metadata:
+      labels:
+        app: easy_wg_mikrotik
+    spec:
+      containers:
+      - name: easy_wg_mikrotik
+        image: rubyon/easy_wg_mikrotik
+        env:
+        - name: RAILS_ENV
+          value: development
+        - name: DEFAULT_LOCALE 
+          value: ko
+        ports:
+        - containerPort: 3000
