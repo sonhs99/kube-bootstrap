@@ -32,7 +32,7 @@ spec:
               name: data
           envFrom:
             - secretRef:
-                name: karakeep-secrets
+                name: karakeep-secret
             - configMapRef:
                 name: karakeep-config
       volumes:
