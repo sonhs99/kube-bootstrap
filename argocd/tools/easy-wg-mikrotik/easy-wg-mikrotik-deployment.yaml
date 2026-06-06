@@ -7,14 +7,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: easy_wg_mikrotik
+      app: easy-wg-mikrotik
   template:
     metadata:
       labels:
-        app: easy_wg_mikrotik
+        app: easy-wg-mikrotik
     spec:
       containers:
-      - name: easy_wg_mikrotik
+      - name: easy-wg-mikrotik
         image: rubyon/easy_wg_mikrotik
         env:
         - name: RAILS_ENV
