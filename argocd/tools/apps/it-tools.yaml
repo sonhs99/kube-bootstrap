@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: it-tools-apps
+  name: it-tools-app
   namespace: argocd
 spec:
   project: default

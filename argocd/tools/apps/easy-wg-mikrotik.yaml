@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: wallos-app
+  name: easy-wg-mikrotik-app
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
-    path: "argocd/tools/wallos"
+    path: "argocd/tools/easy-wg-mikrotik"
   destination:
     server: https://kubernetes.default.svc
     namespace: tools
