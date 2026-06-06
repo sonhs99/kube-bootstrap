@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: easy_wg_mikrotik
+  name: easy-wg-mikrotik
   namespace: tools
 spec:
   replicas: 1
