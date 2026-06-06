@@ -27,15 +27,9 @@ spec:
         - name: config
           mountPath: /app/cache
           subPath: cache
-        - name: media
-          mountPath: /music
-          subPath: Music
         ports:
         - containerPort: 8688
       volumes:
       - name: config
         persistentVolumeClaim:
           claimName: musicseerr-config
-      - name: media
-        persistentVolumeClaim:
-          claimName: nfs-media
