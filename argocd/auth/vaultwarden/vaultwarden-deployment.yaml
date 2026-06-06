@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vaultwarden
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vaultwarden
+  template:
+    metadata:
+      labels:
+        app: vaultwarden
+    spec:
+      containers:
+      - name: vaultwarden
+        image: vaultwarden/server:latest
+        volumeMounts:
+        - name: config
+          mountPath: /data
+        ports:
+        - containerPort: 8096
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: vaultwarden-config
