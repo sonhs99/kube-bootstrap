@@ -34,7 +34,7 @@ spec:
             - secretRef:
                 name: karakeep-secret
             - configMapRef:
-                name: karakeep-config
+                name: karakeep-configmap
       volumes:
         - name: data
           persistentVolumeClaim:
