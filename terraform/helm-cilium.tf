@@ -95,3 +95,11 @@ resource "helm_release" "cilium" {
 
   depends_on = [time_sleep.wait_for_kube]
 }
+
+removed {
+  from = helm_release.cilium
+
+  lifecycle {
+    destroy = false
+  }
+}
