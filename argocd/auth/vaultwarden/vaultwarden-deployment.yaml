@@ -20,7 +20,7 @@ spec:
         - name: config
           mountPath: /data
         ports:
-        - containerPort: 8096
+        - containerPort: 80
       volumes:
       - name: config
         persistentVolumeClaim:
