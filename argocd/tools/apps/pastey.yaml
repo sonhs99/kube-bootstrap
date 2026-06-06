@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-tools
+  name: pastey-apps
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
-    path: "argocd/tools/apps"
+    path: "argocd/tools/pastey"
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: tools
   syncPolicy:
     automated:
       prune: true
