@@ -18,7 +18,7 @@ spec:
         image: bellamy/wallos:latest
         env:
         - name: PASTEY_LISTEN_PORT
-          value: 5000
+          value: "5000"
         - name: PASTEY_DEFAULT_THEME
           value: Dark
         - name: PASTEY_BEHIND_PROXY
@@ -30,7 +30,7 @@ spec:
         - name: PASTEY_WHITELIST_CIDR
           value: 127.0.0.1/32,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
         - name: PASTEY_RECENT_PASTES
-          value: 20
+          value: "20"
         volumeMounts:
         - name: config
           mountPath: /app/data
