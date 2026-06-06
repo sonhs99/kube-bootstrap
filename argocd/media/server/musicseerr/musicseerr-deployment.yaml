@@ -23,6 +23,10 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /app/config
+          subPath: config
+        - name: config
+          mountPath: /app/cache
+          subPath: cache
         - name: media
           mountPath: /music
           subPath: Music
