@@ -176,8 +176,8 @@ spec:
           value: "600"
         volumeMounts:
         - name: soularr-configmap
-          mountPath: /data
-          subPath: "config.ini"
+          mountPath: /data/config.ini
+          subPath: config.ini
         - name: soularr-data
           mountPath: /data
         - name: downloads
