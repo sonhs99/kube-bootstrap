@@ -176,7 +176,7 @@ spec:
           value: "600"
         volumeMounts:
         - name: soularr-config
-          mountPath: /soularr
+          mountPath: /data
         - name: downloads
           mountPath: /downloads
           
