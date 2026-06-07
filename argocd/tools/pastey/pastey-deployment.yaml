@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: pastey
-        image: bellamy/wallos:latest
+        image: cesura/pastey:latest
         env:
         - name: PASTEY_LISTEN_PORT
           value: "5000"
