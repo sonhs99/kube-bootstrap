@@ -37,7 +37,6 @@ spec:
               mountPath: /config
             - name: downloads
               mountPath: /downloads
-              subPath: qbittorrent
           ports:
             - containerPort: 8080
               name: qbitt-http
@@ -57,7 +56,6 @@ spec:
               subPath: Music
             - name: downloads
               mountPath: /downloads
-              subPath: soulseek
           ports:
             - containerPort: 5030
               name: slskd-http
