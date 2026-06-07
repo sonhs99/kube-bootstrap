@@ -173,7 +173,7 @@ spec:
         image: mrusse08/soularr:latest
         env:
         - name: SCRIPT_INTERVAL
-          value: 600
+          value: "600"
         volumeMounts:
         - name: soularr-config
           mountPath: /soularr
