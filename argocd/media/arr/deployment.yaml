@@ -198,7 +198,7 @@ spec:
           claimName: sonarr-config
       - name: soularr-data
         persistentVolumeClaim:
-          claimName: sonarr-data
+          claimName: soularr-data
       - name: media
         persistentVolumeClaim:
           claimName: nfs-media
