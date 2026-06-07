@@ -137,6 +137,7 @@ spec:
           mountPath: /downloads
         ports:
         - containerPort: 8989
+
       - name: gluetun
         image: ghcr.io/qdm12/gluetun:v3.40.0
         env:
@@ -161,6 +162,24 @@ spec:
             mountPath: /dev/net/tun
           - name: mullvad-config-secret
             mountPath: "/gluetun/wireguard"
+
+      - name: flaresolverr
+        image: flaresolverr/flaresolverr:latest
+        env:
+        - name: CAPTCHA_SOLVER
+          value: "hcaptcha-solver"
+
+      - name: soularr
+        image: mrusse08/soularr:latest
+        env:
+        - name: SCRIPT_INTERVAL
+          value: 600
+        volumeMounts:
+        - name: soularr-config
+          mountPath: /soularr
+        - name: downloads
+          mountPath: /downloads
+          
       volumes:
       - name: prowlarr-config
         persistentVolumeClaim:
@@ -189,6 +208,9 @@ spec:
       - name: mullvad-config-secret
         secret:
           secretName: mullvad-config-secret
+      - name: soularr-config
+        secret:
+          secretName: soularr-configmap
       - name: tun
         hostPath:
           path: /dev/net/tun
