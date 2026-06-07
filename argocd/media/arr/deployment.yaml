@@ -175,7 +175,9 @@ spec:
         - name: SCRIPT_INTERVAL
           value: "600"
         volumeMounts:
-        - name: soularr-config
+        - name: soularr-configmap
+          mountPath: /data
+        - name: soularr-data
           mountPath: /data
         - name: downloads
           mountPath: /downloads
@@ -193,6 +195,9 @@ spec:
       - name: sonarr-config
         persistentVolumeClaim:
           claimName: sonarr-config
+      - name: soularr-data
+        secret:
+          secretName: soularr-data
       - name: media
         persistentVolumeClaim:
           claimName: nfs-media
@@ -208,7 +213,7 @@ spec:
       - name: mullvad-config-secret
         secret:
           secretName: mullvad-config-secret
-      - name: soularr-config
+      - name: soularr-configmap
         secret:
           secretName: soularr-configmap
       - name: tun
