@@ -168,6 +168,8 @@ spec:
         env:
         - name: CAPTCHA_SOLVER
           value: "hcaptcha-solver"
+        ports:
+        - containerPort: 8191
 
       - name: soularr
         image: mrusse08/soularr:latest
