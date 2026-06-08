@@ -5,6 +5,6 @@ metadata:
   namespace: longhorn-system
 data:
   default-resource.yaml: |
-    "backup-target": "nfs://192.168.88.6:/Apps"
+    "backup-target": "nfs://192.168.88.6:/volume1/Apps"
     "backup-target-credential-secret": ""
     "backupstore-poll-interval": "180"
