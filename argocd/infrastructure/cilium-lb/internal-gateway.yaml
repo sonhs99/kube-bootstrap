@@ -40,7 +40,6 @@ spec:
       kind: Gateway
       name: gateway-internal
       sectionName: http
-      port: 80
   rules:
     - filters:
         - type: RequestRedirect

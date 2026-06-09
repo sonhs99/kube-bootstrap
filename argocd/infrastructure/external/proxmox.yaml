@@ -7,7 +7,7 @@ spec:
   ports:
     - name: https
       protocol: TCP
-      port: 9443
+      port: 443
       targetPort: 8006
 ---
 apiVersion: v1
