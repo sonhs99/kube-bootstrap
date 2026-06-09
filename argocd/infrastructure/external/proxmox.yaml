@@ -6,6 +6,7 @@ metadata:
 spec:
   ports:
     - name: https
+      type: NodePort
       nodePort: 34321
       protocol: TCP
       port: 443
