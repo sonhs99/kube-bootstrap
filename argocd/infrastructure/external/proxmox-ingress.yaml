@@ -1,16 +1,3 @@
-apiVersion: gateway.networking.k8s.io/v1alpha3
-kind: BackendTLSPolicy
-metadata:
-  name: proxmox-skip-tls-verification
-  namespace: external
-spec:
-  targetRefs:
-    - group: ""
-      kind: Service
-      name: proxmox-svc
-  validation:
-    insecureSkipVerify: true   
----
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
