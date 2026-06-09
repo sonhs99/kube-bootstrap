@@ -19,4 +19,5 @@ subsets:
   - addresses:
       - ip: 192.168.88.31
     ports:
-      - port: 8006
+      - name: https
+        port: 8006
