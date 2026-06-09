@@ -6,7 +6,7 @@ metadata:
 spec:
   ports:
     - protocol: TCP
-      port: 443
+      port: 80
       targetPort: 8006
 ---
 apiVersion: v1
