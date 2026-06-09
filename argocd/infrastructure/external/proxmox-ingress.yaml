@@ -32,6 +32,7 @@ spec:
     - group: ""
       kind: Service
       name: proxmox-svc
+      sectionName: https
   validation:
     hostname: pve01.home.lab
     caCertificateRefs:
