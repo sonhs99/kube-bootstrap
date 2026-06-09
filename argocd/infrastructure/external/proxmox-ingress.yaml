@@ -9,6 +9,7 @@ spec:
     kind: Gateway	
     name: gateway-internal
     namespace: default
+    sectionName: https
   hostnames: ["pve.internal.lazydogs.work"]
   rules:
   - backendRefs:
