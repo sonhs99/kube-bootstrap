@@ -5,10 +5,12 @@ metadata:
   namespace: external
 spec:
   ports:
-    - protocol: TCP
+    - name: https
+      protocol: TCP
       port: 443
       targetPort: 8006
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 80
       targetPort: 8006
 ---
