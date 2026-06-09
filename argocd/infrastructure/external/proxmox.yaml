@@ -4,12 +4,10 @@ metadata:
   name: proxmox-svc
   namespace: external
 spec:
-  type: NodePort
   ports:
     - name: https
-      nodePort: 32222
       protocol: TCP
-      port: 443
+      port: 9443
       targetPort: 8006
 ---
 apiVersion: v1
