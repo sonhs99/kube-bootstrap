@@ -5,9 +5,8 @@ metadata:
   namespace: external
 spec:
   ports:
-    - name: https
-      protocol: TCP
-      port: 8006
+    - protocol: TCP
+      port: 80
       targetPort: 8006
 ---
 apiVersion: v1
@@ -19,5 +18,4 @@ subsets:
   - addresses:
       - ip: 192.168.88.31
     ports:
-      - name: https
-        port: 8006
+      - port: 8006
