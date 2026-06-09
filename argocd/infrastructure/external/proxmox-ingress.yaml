@@ -15,7 +15,7 @@ spec:
       - group: ''	
         kind: Service
         name: proxmox-svc
-        port: 80
+        port: 8006
         weight: 1
     matches:
       - path:
