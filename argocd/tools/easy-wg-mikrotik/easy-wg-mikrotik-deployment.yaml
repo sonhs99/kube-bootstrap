@@ -18,7 +18,7 @@ spec:
         image: rubyon/easy_wg_mikrotik
         env:
         - name: RAILS_ENV
-          value: production
+          value: development
         - name: DEFAULT_LOCALE 
           value: ko
         ports:
