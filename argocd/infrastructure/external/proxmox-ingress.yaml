@@ -26,7 +26,7 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: BackendTLSPolicy
 metadata:
-  name: proxmox-skip-tls-backend-policy
+  name: proxmox-backend-tls-policy
   namespace: external
 spec:
   targetRefs:
@@ -34,7 +34,7 @@ spec:
       kind: Service
       name: proxmox-svc
   validation:
-    hostname: proxmox-svc.external.svc.clustser.local
+    hostname: pve01.home.lab
     caCertificateRefs:
       - group: ""
         kind: Secret
