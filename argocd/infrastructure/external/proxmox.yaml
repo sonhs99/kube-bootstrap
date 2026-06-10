@@ -6,8 +6,9 @@ metadata:
 spec:
   ports:
     - protocol: TCP
-      port: 8006
+      port: 443
       targetPort: 8006
+      appProtocol: https
 ---
 apiVersion: v1
 kind: Endpoints

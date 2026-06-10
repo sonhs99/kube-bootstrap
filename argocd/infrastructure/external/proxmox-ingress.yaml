@@ -16,22 +16,12 @@ spec:
       - group: ''	
         kind: Service
         name: proxmox-svc
-        port: 8006
+        port: 443
         weight: 1
     matches:
       - path:
           type: PathPrefix
           value: /
-    filters:
-      - type: RequestHeaderModifier
-        requestHeaderModifier:
-          set: 
-            - name: "X-Forwarded-Proto"
-              value: "https"
-            - name: "X-Forwarded-Host"
-              value: "pve.internal.lazydogs.work"
-            - name: "X-Forwarded-Port"
-              value: "443"
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: BackendTLSPolicy
@@ -43,7 +33,6 @@ spec:
     - group: ""
       kind: Service
       name: proxmox-svc
-      sectionName: https
   validation:
     hostname: pve01.home.lab
     caCertificateRefs:

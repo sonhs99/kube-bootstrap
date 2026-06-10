@@ -43,11 +43,6 @@ spec:
       sectionName: http
   rules:
     - filters:
-        - type: RequestHeaderModifier
-          requestHeaderModifier:
-            set: 
-              - name: "X-Forwarded-Proto"
-                value: "https"
         - type: RequestRedirect
           requestRedirect:
             scheme: https
