@@ -9,6 +9,15 @@ spec:
     - type: IPAddress
       value: 192.168.88.150
   listeners:
+  - name: https-pass
+    protocol: HTTPS
+    port: 443
+    hostname: "pve.internal.lazydogs.work"
+    tls:
+      mode: Passthrough
+    allowedRoutes:
+      namespaces:
+          from: All
   - name: https
     protocol: HTTPS
     port: 443
