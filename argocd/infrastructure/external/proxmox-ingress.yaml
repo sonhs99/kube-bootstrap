@@ -12,18 +12,18 @@ spec:
     sectionName: https
   hostnames: ["pve.internal.lazydogs.work"]
   rules:
-    - filters:
-      - type: RequestHeaderModifier
-        requestHeaderModifier:
-          set:
-            - name: Host
-              value: pve.internal.lazydogs.work
-            - name: X-Forwarded-Proto
-              value: https
-            - name: X-Forwarded-Host
-              value: pve.example.com
-            - name: X-Forwarded-Port
-              value: "443"
+  - filters:
+    - type: RequestHeaderModifier
+      requestHeaderModifier:
+        set:
+          - name: Host
+            value: pve.internal.lazydogs.work
+          - name: X-Forwarded-Proto
+            value: https
+          - name: X-Forwarded-Host
+            value: pve.example.com
+          - name: X-Forwarded-Port
+            value: "443"
   - backendRefs:
       - group: ''	
         kind: Service
