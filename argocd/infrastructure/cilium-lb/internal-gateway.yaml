@@ -10,7 +10,7 @@ spec:
       value: 192.168.88.150
   listeners:
   - name: https-pass
-    protocol: HTTPS
+    protocol: TLS
     port: 443
     hostname: "pve.internal.lazydogs.work"
     tls:
