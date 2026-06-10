@@ -6,10 +6,12 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+    - name: http
+      port: 80
       targetPort: 10086
       protocol: TCP
-    - port: 51820
+    - name: wireguard
+      port: 51820
       targetPort: 51820
       protocol: UDP
   selector:
