@@ -1,5 +1,5 @@
 apiVersion: gateway.networking.k8s.io/v1
-kind: TLSRoute
+kind: HTTPRoute
 metadata:
   name: proxmox-internal-route
   namespace: external
@@ -9,7 +9,7 @@ spec:
     kind: Gateway	
     name: gateway-internal
     namespace: default
-    sectionName: https-pass
+    sectionName: https
   hostnames: ["pve.internal.lazydogs.work"]
   rules:
   - backendRefs:
@@ -18,3 +18,24 @@ spec:
         name: proxmox-svc
         port: 443
         weight: 1
+    matches:
+      - path:
+          type: PathPrefix
+          value: /
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: BackendTLSPolicy
+metadata:
+  name: proxmox-backend-tls-policy
+  namespace: external
+spec:
+  targetRefs:
+    - group: ""
+      kind: Service
+      name: proxmox-svc
+  validation:
+    hostname: pve01.home.lab
+    caCertificateRefs:
+      - group: ""
+        kind: Secret
+        name: proxmox-ca
