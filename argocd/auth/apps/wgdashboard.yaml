@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: easy-wg-mikrotik-app
+  name: wgdashboard-app
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
-    path: "argocd/tools/easy-wg-mikrotik"
+    path: "argocd/auth/wgdashboard"
   destination:
     server: https://kubernetes.default.svc
-    namespace: tools
+    namespace: auth
   syncPolicy:
     automated:
       prune: true

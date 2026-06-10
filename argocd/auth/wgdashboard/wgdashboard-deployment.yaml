@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wgdashboard
+  namespace: auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wgdashboard
+  template:
+    metadata:
+      labels:
+        app: wgdashboard
+    spec:
+      containers:
+      - name: wgdashboard
+        image: ghcr.io/wgdashboard/wgdashboard:latest
+        volumeMounts:
+        - name: data
+          mountPath: /data
+          subPath: data
+        - name: data
+          mountPath: /etc/wireguard
+          subPath: conf
+        - name: data
+          mountPath: /etc/amnezia/amneziawg
+          subPath: aconf
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+        ports:
+        - containerPort: 10086
+        - containerPort: 51820
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: wgdashboard-data
