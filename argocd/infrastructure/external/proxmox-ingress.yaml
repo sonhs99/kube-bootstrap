@@ -34,7 +34,7 @@ spec:
       kind: Service
       name: proxmox-svc
   validation:
-    hostname: proxmox-svc.external.svc.cluster.local
+    hostname: pve01
     caCertificateRefs:
       - group: ""
         kind: Secret
