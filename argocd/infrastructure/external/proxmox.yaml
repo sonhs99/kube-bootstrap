@@ -4,7 +4,7 @@ metadata:
   name: proxmox-svc
   namespace: external
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - protocol: TCP
       port: 443
