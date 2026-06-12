@@ -18,7 +18,7 @@ resource "kubernetes_secret" "sealed_secrets_cert" {
     "tls.crt" = file("../cert/sealed-secrets-key.pub")
     "tls.key" = file("../cert/sealed-secrets-key.pem")
   }
-  depends_on = [time_sleep.wait_for_kube]
+  depends_on = [kubernetes_namespace.sealed_secrets]
 }
 
 resource "helm_release" "sealed_secrets" {
