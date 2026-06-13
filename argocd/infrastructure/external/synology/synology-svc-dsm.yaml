@@ -25,4 +25,4 @@ ports:
     appProtocol: https
 endpoints:
   - addresses:
-      - ip: 192.168.88.6
+      - 192.168.88.6
