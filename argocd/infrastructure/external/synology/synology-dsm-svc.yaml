@@ -11,18 +11,13 @@ spec:
       targetPort: 5001
       appProtocol: https
 ---
-apiVersion: discovery.k8s.io/v1
-kind: EndpointSlice
+apiVersion: v1
+kind: Endpoints
 metadata:
-  name: synology-dsm-1
+  name: synology-dsm
   namespace: external
-  labels:
-    kubernetes.io/service-name: synology-dsm
-addressType: IPv4
-ports:
-  - protocol: TCP
-    appProtocol: https
-    port: 443
-endpoints:
+subsets:
   - addresses:
-      - 192.168.88.6
+      - ip: 192.168.88.31
+    ports:
+      - port: 8006
