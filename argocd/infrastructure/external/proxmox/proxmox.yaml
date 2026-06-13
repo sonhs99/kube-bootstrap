@@ -16,7 +16,8 @@ kind: EndpointSlice
 metadata:
   name: proxmox-1
   namespace: external
-  kubernetes.io/service-name: proxmox
+  labels:
+    kubernetes.io/service-name: proxmox
 addressType: IPv4
 ports:
   - protocol: TCP

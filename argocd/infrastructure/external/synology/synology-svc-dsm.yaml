@@ -16,7 +16,8 @@ kind: EndpointSlice
 metadata:
   name: synology-dsm-1
   namespace: external
-  kubernetes.io/service-name: synology-dsm
+  labels:
+    kubernetes.io/service-name: synology-dsm
 addressType: IPv4
 ports:
   - protocol: TCP
