@@ -1,7 +1,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: proxmox-internal-route
+  name: synology-internal-route
   namespace: external
 spec:
   parentRefs:
@@ -10,12 +10,12 @@ spec:
     name: gateway-internal
     namespace: default
     sectionName: https
-  hostnames: ["pve.internal.lazydogs.work"]
+  hostnames: ["synology.internal.lazydogs.work"]
   rules:
   - backendRefs:
       - group: ''	
         kind: Service
-        name: proxmox-svc
+        name: synology-dsm
         port: 443
         weight: 1
     matches:
@@ -26,16 +26,16 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: BackendTLSPolicy
 metadata:
-  name: proxmox-backend-tls-policy
+  name: synology-backend-tls-policy
   namespace: external
 spec:
   targetRefs:
     - group: ""
       kind: Service
-      name: proxmox-svc
+      name: synology-dsm
   validation:
     hostname: pve01
     caCertificateRefs:
       - group: ""
         kind: ConfigMap
-        name: proxmox-ca
+        name: synology-ca
