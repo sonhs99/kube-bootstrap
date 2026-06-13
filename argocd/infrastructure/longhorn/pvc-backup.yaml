@@ -6,7 +6,7 @@ metadata:
 spec:
   cron: "0 12 * * *"
   task: "snapshot"
-  retain: 1
+  retain: 3
   concurrency: 2
 ---
 apiVersion: longhorn.io/v1beta2
