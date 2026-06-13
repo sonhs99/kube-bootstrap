@@ -20,9 +20,8 @@ metadata:
 addressType: IPv4
 ports:
   - protocol: TCP
-    port: 443
-    targetPort: 8006
     appProtocol: https
+    port: 443
 endpoints:
   - addresses:
       - 192.168.88.31
