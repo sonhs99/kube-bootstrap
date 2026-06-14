@@ -28,6 +28,8 @@ spec:
               value: /data
             - name: CRAWLER_VIDEO_DOWNLOAD
               value: "true"
+            - name: CRAWLER_VIDEO_DOWNLOAD_MAX_SIZE
+              value: "-1"
             # Add OPENAI_API_KEY to the ConfigMap if necessary
           volumeMounts:
             - mountPath: /data
