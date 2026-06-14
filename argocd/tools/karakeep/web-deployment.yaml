@@ -26,6 +26,8 @@ spec:
               value: http://chrome:9222
             - name: DATA_DIR
               value: /data
+            - name: CRAWLER_VIDEO_DOWNLOAD
+              value: "true"
             # Add OPENAI_API_KEY to the ConfigMap if necessary
           volumeMounts:
             - mountPath: /data
