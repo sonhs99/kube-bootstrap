@@ -34,6 +34,8 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: data
+            - mountPath: /data/asset
+              name: asset
           envFrom:
             - secretRef:
                 name: karakeep-secret
@@ -43,3 +45,6 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: karakeep-data
+        - name: asset
+          persistentVolumeClaim:
+            claimName: nfs-karakeep-asset
