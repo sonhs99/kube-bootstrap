@@ -34,7 +34,7 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: data
-            - mountPath: /data/asset
+            - mountPath: /data/assets
               name: asset
           envFrom:
             - secretRef:
