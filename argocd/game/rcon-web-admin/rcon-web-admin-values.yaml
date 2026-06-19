@@ -91,7 +91,7 @@ persistence:
 
 rconWeb:
   # Sets the initial user as an admin
-  isAdmin: false
+  isAdmin: true
   # Sets the initial user's username
   username: admin
   # Sets the initial user's password
