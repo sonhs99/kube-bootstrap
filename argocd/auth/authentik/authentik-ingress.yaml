@@ -14,7 +14,7 @@ spec:
   - backendRefs:
       - group: ''	
         kind: Service	
-        name: authentik
+        name: authentik-server
         port: 80
         weight: 1
     matches:
@@ -38,7 +38,7 @@ spec:
   - backendRefs:
       - group: ''	
         kind: Service	
-        name: authentik
+        name: authentik-server
         port: 80
         weight: 1
     matches:
