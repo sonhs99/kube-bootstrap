@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mc-router
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://itzg.github.io/minecraft-server-charts/
+      chart: mc-router
+      targetRevision: 1.5.0
+      helm:
+        valueFiles:
+          - $repo/argocd/game/mc-router/mc-router-values.yaml
+    - repoURL: https://github.com/sonhs99/kube-bootstrap.git
+      targetRevision: main
+      ref: repo
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: game
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false
+      - ServerSideApply=true
