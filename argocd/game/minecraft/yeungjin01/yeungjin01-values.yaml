@@ -61,7 +61,7 @@ extraDeploy: []
 extraPodSpec: {}
 minecraftServer:
   eula: "TRUE"
-  version: "1.26.2"
+  version: "1.26.1"
   type: PAPER
   forgeVersion: null
   forgeInstallerUrl: null
