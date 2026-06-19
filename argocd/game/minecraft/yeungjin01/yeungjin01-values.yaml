@@ -173,8 +173,8 @@ persistence:
   annotations:
     - storageClassName: longhorn
   dataDir:
-    enabled: false
-    Size: 1Gi
+    enabled: true
+    Size: 5Gi
     accessModes:
       - ReadWriteOnce
 podAnnotations: {}
