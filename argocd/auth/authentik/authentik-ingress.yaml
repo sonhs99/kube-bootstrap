@@ -1,30 +1,6 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: authentik-internal-route
-  namespace: auth
-spec:
-  parentRefs:
-  - group: gateway.networking.k8s.io	
-    kind: Gateway	
-    name: gateway-internal
-    namespace: default
-  hostnames: ["auth.internal.lazydogs.work"]
-  rules:
-  - backendRefs:
-      - group: ''	
-        kind: Service	
-        name: authentik-server
-        port: 80
-        weight: 1
-    matches:
-      - path:
-          type: PathPrefix
-          value: /
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
   name: authentik-route
   namespace: media
 spec:
