@@ -97,8 +97,8 @@ rconWeb:
   # Sets the initial user's password
   password: "admin"
   # Name of existing secret with UI password
-  passwordExistingSecret:
-  passwordKey: "password"
+  # passwordExistingSecret:
+  # passwordKey: "password"
   # The initial game you wish to control (minecraft / rust / csgo / other)
   game: minecraft
   # The display name of the initial server (if unset; defaults to value of RWA_GAME)
@@ -110,8 +110,8 @@ rconWeb:
   # The password for the initial RCON server to control
   rconPassword: "8yMTEKMX2BheglJIBMVdyrR4hyyAjaaH"
   # Name of existing secret with RCON password
-  rconPasswordExistingSecret:
-  rconPasswordKey: "rcon-password"
+  # rconPasswordExistingSecret:
+  # rconPasswordKey: "rcon-password"
   # Prevent the initial user user executing these commands
   restrictCommands: []
   # Hide this list of widgets from the initial user
