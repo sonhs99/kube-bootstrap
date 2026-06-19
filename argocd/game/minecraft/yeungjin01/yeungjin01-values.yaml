@@ -150,10 +150,10 @@ minecraftServer:
     parallelDownloads: 4
     overridesSkipExisting: false
   rcon:
-    enabled: false
+    enabled: true
     withGeneratedPassword: false
     port: 25575
-    password: CHANGEME!
+    password: 8yMTEKMX2BheglJIBMVdyrR4hyyAjaaH
     existingSecret: null
     secretKey: rcon-password
     serviceType: ClusterIP
