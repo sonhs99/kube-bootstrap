@@ -130,7 +130,7 @@ minecraftServer:
   spigetResources: []
   extraServiceSpec: {}
   modrinth:
-    projects: ["swbUV1cr"]
+    projects: []
     downloadDependencies: none
     allowedVersionType: default
   autoCurseForge:
