@@ -1,0 +1,13 @@
+authentik:
+    secret_key: "ZZFjFoKyjwobbe68Tyj7C97WoGJhRGH9bQUoW8ypQ7BXS7YpcLWjhVW7Zz2g"
+    # This sends anonymous usage-data, stack traces on errors and
+    # performance data to sentry.io, and is fully opt-in
+    error_reporting:
+        enabled: true
+    postgresql:
+        password: "G7x72pdLOUXk4hulj2T3vG1fABlr0WYK2CLZ"
+
+postgresql:
+    enabled: true
+    auth:
+        password: "G7x72pdLOUXk4hulj2T3vG1fABlr0WYK2CLZ"
