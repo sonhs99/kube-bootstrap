@@ -170,8 +170,8 @@ extraEnv: {}
 envFrom: []
 persistence:
   labels: {}
-  annotations:
-    - storageClassName: longhorn
+  annotations: {}
+  storageClassName: longhorn
   dataDir:
     enabled: true
     Size: 5Gi
