@@ -6,15 +6,15 @@ metadata:
 spec:
   project: default
   sources:
+    - repoURL: https://github.com/sonhs99/kube-bootstrap.git
+      targetRevision: main
+      ref: repo
     - repoURL: https://itzg.github.io/minecraft-server-charts/
       chart: mc-router
       targetRevision: 1.5.0
       helm:
         valueFiles:
           - $repo/argocd/game/mc-router/mc-router-values.yaml
-    - repoURL: https://github.com/sonhs99/kube-bootstrap.git
-      targetRevision: main
-      ref: repo
   destination:
     server: https://kubernetes.default.svc
     namespace: game
