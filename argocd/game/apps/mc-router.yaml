@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: mc-router-ap0p
+  name: mc-router-app
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
