@@ -6,9 +6,6 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://github.com/sonhs99/kube-bootstrap.git
-      targetRevision: main
-      ref: repo
     - repoURL: https://itzg.github.io/minecraft-server-charts/
       chart: rcon-web-admin
       targetRevision: 1.2.1
