@@ -102,7 +102,7 @@ rconWeb:
   # The initial game you wish to control (minecraft / rust / csgo / other)
   game: minecraft
   # The display name of the initial server (if unset; defaults to value of RWA_GAME)
-  serverName: yeungjin01
+  serverName: yeungjin01-minecraft-rcon
   # The initial RCON server to control
   rconHost: 
   # The port number of the initial RCON server to control
