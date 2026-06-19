@@ -95,7 +95,7 @@ rconWeb:
   # Sets the initial user's username
   username: admin
   # Sets the initial user's password
-  password: ""
+  password: "admin"
   # Name of existing secret with UI password
   passwordExistingSecret:
   passwordKey: "password"
