@@ -9,6 +9,10 @@ spec:
     - repoURL: https://itzg.github.io/minecraft-server-charts/
       chart: rcon-web-admin
       targetRevision: 1.2.1
+      helm:
+        values: |
+          rconWeb:
+            password: "rcon-admin"
   destination:
     server: https://kubernetes.default.svc
     namespace: game
