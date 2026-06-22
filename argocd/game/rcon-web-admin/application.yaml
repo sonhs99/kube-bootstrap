@@ -13,6 +13,7 @@ spec:
         values: |
           rconWeb:
             password: "rcon-admin"
+            rconHost: yeungjin01-minecraft-rcon
   destination:
     server: https://kubernetes.default.svc
     namespace: game
