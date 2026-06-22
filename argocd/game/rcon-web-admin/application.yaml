@@ -6,15 +6,9 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://github.com/sonhs99/kube-bootstrap.git
-      targetRevision: main
-      ref: repo
     - repoURL: https://itzg.github.io/minecraft-server-charts/
       chart: rcon-web-admin
       targetRevision: 1.2.1
-      helm:
-        valueFiles:
-          - $repo/argocd/game/rcon-web-admin/rcon-web-admin-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: game
