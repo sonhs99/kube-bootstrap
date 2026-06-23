@@ -151,9 +151,9 @@ minecraftServer:
     overridesSkipExisting: false
   rcon:
     enabled: true
-    withGeneratedPassword: false
+    withGeneratedPassword: true
     port: 25575
-    password: 8yMTEKMX2BheglJIBMVdyrR4hyyAjaaH
+    password: null
     existingSecret: null
     secretKey: null
     serviceType: ClusterIP
