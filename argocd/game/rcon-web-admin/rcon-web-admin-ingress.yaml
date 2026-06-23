@@ -40,5 +40,8 @@ spec:
             type: PathPrefix
             value: /ws
       backendRefs:
-        - name: rcon-web-admin
+        - group: ''	
+          kind: Service	
+          name: rcon-web-admin
           port: 4327
+          weight: 1
