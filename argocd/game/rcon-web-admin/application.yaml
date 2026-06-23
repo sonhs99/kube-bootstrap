@@ -14,8 +14,7 @@ spec:
           rconWeb:
             password: "rcon-admin"
             rconHost: "yeungjin01-minecraft-rcon"
-            rconPasswordExistingSecret: "yeungjin01-minecraft-rcon"
-            rconPasswordKey: "rcon-password"
+            rconPassword: "5a06f7747772d87b3099ca50"
             websocketRcon: true
             websocketUrl: "ws://rcon.internal.lazydogs.work:4327/ws"
             websocketUrlSsl: "wss://rcon.internal.lazydogs.work:4327/ws"
