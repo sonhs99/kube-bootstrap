@@ -12,11 +12,13 @@ spec:
       helm:
         values: |
           rconWeb:
+            isAdmin: true
+            username: admin
             password: "rcon-admin"
             rconHost: yeungjin01-minecraft-rcon
             rconPasswordExistingSecret: "yeungjin01-minecraft-rcon"
             rconPasswordKey: "rcon-password"
-            websocketRcon: true
+            websocketRcon: false
             websocketUrl: "ws://rcon.internal.lazydogs.work:4327/ws"
             websocketUrlSsl: "wss://rcon.internal.lazydogs.work:4327/ws"
   destination:
