@@ -12,7 +12,6 @@ spec:
       helm:
         values: |
           rconWeb:
-            username: admin
             password: "rcon-admin"
             rconHost: yeungjin01-minecraft-rcon
             rconPasswordExistingSecret: "yeungjin01-minecraft-rcon"
