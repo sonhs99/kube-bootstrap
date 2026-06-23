@@ -155,7 +155,7 @@ minecraftServer:
     port: 25575
     password: 8yMTEKMX2BheglJIBMVdyrR4hyyAjaaH
     existingSecret: null
-    secretKey: rcon-password
+    secretKey: null
     serviceType: ClusterIP
     nodePort: null
     clusterIP: null
