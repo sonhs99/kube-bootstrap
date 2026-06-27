@@ -79,6 +79,9 @@ spec:
       - name: prowlarr-config
         persistentVolumeClaim:
           claimName: prowlarr-config
+      - name: mullvad-config-secret
+        secret:
+          secretName: mullvad-config-secret
       - name: tun
         hostPath:
           path: /dev/net/tun
