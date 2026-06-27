@@ -9,4 +9,4 @@ spec:
     - port: 80
       targetPort: 8686
   selector:
-    app: arr
+    app: lidarr
