@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lidarr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arr
+  template:
+    metadata:
+      labels:
+        app: arr
+    spec:
+      containers:
+      - name: lidarr
+        image: lscr.io/linuxserver/lidarr
+        env:
+        - name: PUID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: UID
+        - name: PGID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: GID
+        - name: LIDARR__AUTH__APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: arr-token-secret
+              key: lidarr
+        - name: LIDARR__AUTH__REQUIRED
+          value: DisabledForLocalAddresses
+        - name: LIDARR__AUTH__METHOD
+          value: External
+        volumeMounts:
+        - name: lidarr-config
+          mountPath: /config
+        - name: media
+          mountPath: /media
+        - name: downloads
+          mountPath: /downloads
+        ports:
+        - containerPort: 8686
+
+      - name: soularr
+        image: mrusse08/soularr:latest
+        env:
+        - name: SCRIPT_INTERVAL
+          value: "600"
+        volumeMounts:
+        - name: soularr-configmap
+          mountPath: /data/config.ini
+          subPath: config.ini
+        - name: soularr-data
+          mountPath: /data
+        - name: downloads
+          mountPath: /downloads
+          
+      volumes:
+      - name: lidarr-config
+        persistentVolumeClaim:
+          claimName: lidarr-config
+      - name: soularr-data
+        persistentVolumeClaim:
+          claimName: soularr-data
+      - name: media
+        persistentVolumeClaim:
+          claimName: nfs-media
+      - name: downloads
+        persistentVolumeClaim:
+          claimName: nfs-downloads
+      - name: nfs-auth
+        secret:
+          secretName: nfs-auth
+      - name: arr-token-secret
+        secret:
+          secretName: arr-token-secret
+      - name: soularr-configmap
+        secret:
+          secretName: soularr-configmap
+      - name: tun
+        hostPath:
+          path: /dev/net/tun

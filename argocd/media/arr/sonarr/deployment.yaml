@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarr
+  template:
+    metadata:
+      labels:
+        app: sonarr
+    spec:
+      containers:
+      - name: sonarr
+        image: lscr.io/linuxserver/sonarr
+        env:
+        - name: PUID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: UID
+        - name: PGID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: GID
+        - name: SONARR__AUTH__APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: arr-token-secret
+              key: sonarr
+        - name: SONARR__AUTH__REQUIRED
+          value: DisabledForLocalAddresses
+        - name: SONARR__AUTH__METHOD
+          value: External
+        volumeMounts:
+        - name: sonarr-config
+          mountPath: /config
+        - name: media
+          mountPath: /media
+        - name: downloads
+          mountPath: /downloads
+        ports:
+        - containerPort: 8989
+          
+      volumes:
+      - name: sonarr-config
+        persistentVolumeClaim:
+          claimName: sonarr-config
+      - name: media
+        persistentVolumeClaim:
+          claimName: nfs-media
+      - name: downloads
+        persistentVolumeClaim:
+          claimName: nfs-downloads
+      - name: nfs-auth
+        secret:
+          secretName: nfs-auth
+      - name: arr-token-secret
+        secret:
+          secretName: arr-token-secret

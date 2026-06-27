@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prowlarr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prowlarr
+  template:
+    metadata:
+      labels:
+        app: prowlarr
+    spec:
+      containers:
+      - name: prowlarr
+        image: lscr.io/linuxserver/prowlarr
+        env:
+        - name: PUID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: UID
+        - name: PGID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: GID
+        - name: PROWLARR__AUTH__APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: arr-token-secret
+              key: prowlarr
+        - name: PROWLARR__AUTH__REQUIRED
+          value: DisabledForLocalAddresses
+        - name: PROWLARR__AUTH__METHOD
+          value: External
+        volumeMounts:
+        - name: prowlarr-config
+          mountPath: /config
+        ports:
+        - containerPort: 9696
+
+      - name: flaresolverr
+        image: flaresolverr/flaresolverr:latest
+        env:
+        - name: CAPTCHA_SOLVER
+          value: "hcaptcha-solver"
+        ports:
+        - containerPort: 8191
+
+      - name: gluetun
+        image: ghcr.io/qdm12/gluetun:v3.40.0
+        env:
+        - name: VPN_SERVICE_PROVIDER
+          value: "mullvad"
+        - name: VPN_TYPE
+          value: "wireguard"
+        - name: FIREWALL_INPUT_PORTS
+          value: "9696,8686,7878,8989" 
+        - name: FIREWALL_OUTBOUND_SUBNETS
+          value: "192.168.0.0/16,10.0.0.0/8"
+        - name: DNS_KEEP_NAMESERVER
+          value: "on"
+        - name: DOT
+          value: "off"
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+        volumeMounts:
+          - name: tun
+            mountPath: /dev/net/tun
+          - name: mullvad-config-secret
+            mountPath: "/gluetun/wireguard"
+
+      volumes:
+      - name: prowlarr-config
+        persistentVolumeClaim:
+          claimName: prowlarr-config
+      - name: tun
+        hostPath:
+          path: /dev/net/tun
