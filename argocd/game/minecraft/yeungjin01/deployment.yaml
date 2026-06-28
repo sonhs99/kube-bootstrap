@@ -23,6 +23,10 @@ spec:
         env:
         - name: EULA
           value: "TRUE"
+        - name: VERSION
+          value: "26.1.2"
+        - name: TYPE
+          value: "PAPER"
         resources:
           requests:
             memory: "4Gi"
