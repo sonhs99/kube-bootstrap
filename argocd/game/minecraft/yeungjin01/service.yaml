@@ -4,7 +4,7 @@ metadata:
   name: yeungjin01-minecraft
   namespace: game
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 25565
     targetPort: 25565
