@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: yeungjin01
+  namespace: game
 spec:
   replicas: 1
   strategy:
