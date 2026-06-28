@@ -53,6 +53,7 @@ resource "helm_release" "argocd" {
   
   depends_on = [
     time_sleep.wait_for_kube,
-    kubernetes_namespace.argocd
+    kubernetes_namespace.argocd,
+    helm_release.sealed_secrets
   ]
 }
