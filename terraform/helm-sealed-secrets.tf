@@ -24,7 +24,7 @@ resource "kubernetes_secret" "sealed_secrets_cert" {
 resource "helm_release" "sealed_secrets" {
   name             = "sealed-secrets-controller"
   namespace        = "sealed-secrets"
-  repository       = "https://bitnami-labs.github.io/sealed-secrets"
+  repository       = "https://bitnami.github.io/sealed-secrets"
   chart            = "sealed-secrets"
   version          = "2.18.5"
   create_namespace = false
