@@ -54,7 +54,7 @@ minecraftRouter:
     enabled: false
   defaultServer: {}
   mappings:
-    - externalHostname: yeungjin01.lazydogs.work
+    - externalHostname: yeungjin01.mc.lazydogs.work
       host: yeungjin01-minecraft
       port: 25565
   metrics:
