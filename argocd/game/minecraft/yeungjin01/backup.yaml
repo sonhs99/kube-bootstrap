@@ -3,6 +3,7 @@ apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
   name: yeungjin01-minecraft-backup
+  namespace: game
 spec:
   # The PVC to be backed up
   sourcePVC: yeungjin01-minecraft-pvc
