@@ -17,7 +17,7 @@ spec:
       - name: rest-server
         image: restic/rest-server:latest
         args:
-          - --path=/data
+          - --path /data
           - --no-auth
         volumeMounts:
         - name: backup-storage
