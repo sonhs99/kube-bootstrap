@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restic-server
+  namespace: restic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: restic-server
+  template:
+    metadata:
+      labels:
+        app: restic-server
+    spec:
+      containers:
+      - name: rest-server
+        image: restic/rest-server:latest
+        args:
+          - --path=/data
+          - --no-auth
+        volumeMounts:
+        - name: backup-storage
+          mountPath: /data
+      volumes:
+      - name: backup-storage
+        persistentVolumeClaim:
+          claimName: nfs-restic-pvc
