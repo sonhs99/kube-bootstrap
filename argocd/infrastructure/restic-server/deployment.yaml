@@ -16,7 +16,7 @@ spec:
       containers:
       - name: rest-server
         image: restic/rest-server:latest
-        envs:
+        env:
         - name: OPTIONS
           value: "--path=/data --no-auth"
         volumeMounts:
