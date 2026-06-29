@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: longhorn-app
+  name: volsync
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "-10"
+    argocd.argoproj.io/sync-wave: "-4"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
-    path: "argocd/infrastructure/longhorn"
+    path: "argocd/infrastructure/volsync"
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

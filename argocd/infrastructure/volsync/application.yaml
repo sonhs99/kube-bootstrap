@@ -1,21 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: longhorn-app
+  name: volsync
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "-10"
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/sonhs99/kube-bootstrap.git
-    targetRevision: main
-    path: "argocd/infrastructure/longhorn"
+    repoURL: https://backube.github.io/helm-charts/
+    targetRevision: 0.16.0
+    chart: volsync
   destination:
+    namespace: volsync-system
     server: https://kubernetes.default.svc
-    namespace: argocd
   syncPolicy:
     automated:
       prune: true
