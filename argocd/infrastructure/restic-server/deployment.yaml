@@ -16,9 +16,9 @@ spec:
       containers:
       - name: rest-server
         image: restic/rest-server:latest
-        args:
-          - --path /data
-          - --no-auth
+        envs:
+        - name: OPTIONS
+          value: "--path=/data --no-auth"
         volumeMounts:
         - name: backup-storage
           mountPath: /data
