@@ -1,7 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-restic-pv
+  name: nfs-rest-pv
+  annotations:
+    argocd.argoproj.io/sync-wave: "-40"
 spec:
   capacity:
     storage: 400Gi
@@ -19,13 +21,15 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nfs-restic-pvc
+  name: nfs-rest-pvc
   namespace: restic
+  annotations:
+    argocd.argoproj.io/sync-wave: "-40"
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 400Gi
-  volumeName: nfs-restic-pv
+  volumeName: nfs-rest-pv
   storageClassName: ""

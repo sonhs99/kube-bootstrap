@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: yeungjin01
   namespace: game
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   replicas: 1
   strategy:
@@ -17,7 +19,7 @@ spec:
     spec:
       containers:
       - name: minecraft-server
-        image: itzg/minecraft-server  # 가장 널리 쓰이는 마인크래프트 서버 이미지
+        image: itzg/minecraft-server
         ports:
         - containerPort: 25565
         env:

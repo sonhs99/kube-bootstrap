@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   name: restic
   annotations:
-    argocd.argoproj.io/sync-wave: "-5"
+    argocd.argoproj.io/sync-wave: "-40"
