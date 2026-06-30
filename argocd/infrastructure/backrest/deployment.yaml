@@ -27,6 +27,8 @@ spec:
             value: /tmp
           - name: TZ
             value: Asia/Seoul
+          - name: BACKREST_PORT 
+           value: "9898"
           volumeMounts:
             - name: backrest-data
               mountPath: /data
