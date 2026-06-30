@@ -30,19 +30,19 @@ spec:
           volumeMounts:
             - name: backrest-data
               mountPath: /data
-              subPath: /data
+              subPath: data
             - name: backrest-data
               mountPath: /config
-              subPath: /config
+              subPath: config
             - name: backrest-data
               mountPath: /cache
-              subPath: /cache
+              subPath: cache
             - name: backrest-data
               mountPath: /tmp
-              subPath: /tmp
+              subPath: tmp
             - name: backrest-data
               mountPath: /root/.config/rclone
-              subPath: /rclone
+              subPath: rclone
           ports:
             - containerPort: 9898
       volumes:
