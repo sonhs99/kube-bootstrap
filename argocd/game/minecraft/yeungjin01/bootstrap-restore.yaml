@@ -7,7 +7,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   trigger:
-    manual: bootstrap
+    manual: restore-test
   restic:
     repository: yeungjin01-minecraft-restic-config
     # Use an existing PVC, don't provision a new one
