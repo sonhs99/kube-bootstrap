@@ -9,7 +9,7 @@ metadata:
 spec:
   sourcePVC: yeungjin01-minecraft-pvc
   trigger:
-    schedule: "0 0 0/1 1/1 *"
+    schedule: "0 */1 * * *"
   restic:
     pruneIntervalDays: 30
     repository: yeungjin01-minecraft-restic-config
