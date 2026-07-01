@@ -1,14 +1,14 @@
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
 metadata:
-  name: yeungjin01-minecraft-pvc-restore
-  namespace: game
+  name: pastey-config-restore
+  namespace: tools
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   trigger:
     manual: bootstrap
   restic:
-    repository: yeungjin01-minecraft-restic-config
-    destinationPVC: yeungjin01-minecraft-pvc
+    repository: pastey-restic-config
+    destinationPVC: pastey-config
     copyMethod: Direct

@@ -3,6 +3,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: pastey-config
   namespace: tools
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   accessModes:
     - ReadWriteOnce
