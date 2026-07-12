@@ -3,8 +3,6 @@ kind: Deployment
 metadata:
   name: yeungjin01
   namespace: game
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
 spec:
   replicas: 1
   strategy:

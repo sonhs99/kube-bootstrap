@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-infra
+  name: argocd-app
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
-    path: "argocd/infra/apps"
+    path: "argocd/bootstrap/argocd"
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

@@ -3,8 +3,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: yeungjin01-minecraft-pvc
   namespace: game
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
 spec:
   accessModes:
     - ReadWriteOnce

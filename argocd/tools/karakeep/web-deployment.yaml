@@ -26,16 +26,14 @@ spec:
               value: http://chrome:9222
             - name: DATA_DIR
               value: /data
-            - name: CRAWLER_VIDEO_DOWNLOAD
-              value: "true"
-            - name: CRAWLER_VIDEO_DOWNLOAD_MAX_SIZE
-              value: "-1"
+            # - name: CRAWLER_VIDEO_DOWNLOAD
+            #   value: "true"
+            # - name: CRAWLER_VIDEO_DOWNLOAD_MAX_SIZE
+            #   value: "-1"
             # Add OPENAI_API_KEY to the ConfigMap if necessary
           volumeMounts:
             - mountPath: /data
               name: data
-            - mountPath: /data/assets
-              name: asset
           envFrom:
             - secretRef:
                 name: karakeep-secret
@@ -45,6 +43,3 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: karakeep-data
-        - name: asset
-          persistentVolumeClaim:
-            claimName: nfs-karakeep-asset

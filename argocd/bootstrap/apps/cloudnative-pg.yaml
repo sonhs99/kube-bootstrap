@@ -1,14 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-infra
+  name: cloudnative-pg-app
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
-    path: "argocd/infra/apps"
+    path: "argocd/bootstrap/cloudnative-pg"
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
