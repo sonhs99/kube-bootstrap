@@ -13,7 +13,7 @@ spec:
       targetRevision: 1.11.2
       helm:
         valueFiles:
-          - $repo/argocd/infrastructure/longhorn/longhorn-values.yaml
+          - $repo/argocd/bootstrap/longhorn/longhorn-values.yaml
     - repoURL: https://github.com/sonhs99/kube-bootstrap.git
       targetRevision: main
       ref: repo
