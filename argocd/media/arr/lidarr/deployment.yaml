@@ -14,90 +14,92 @@ spec:
         app: lidarr
     spec:
       containers:
-        - name: lidarr
-          image: lscr.io/linuxserver/lidarr
-          env:
-            - name: PUID
-              valueFrom:
-                secretKeyRef:
-                  name: nfs-auth
-                  key: UID
-            - name: PGID
-              valueFrom:
-                secretKeyRef:
-                  name: nfs-auth
-                  key: GID
-            - name: LIDARR__AUTH__APIKEY
-              valueFrom:
-                secretKeyRef:
-                  name: arr-token-secret
-                  key: lidarr
-            - name: LIDARR__AUTH__REQUIRED
-              value: DisabledForLocalAddresses
-            - name: LIDARR__AUTH__METHOD
-              value: External
-            - name: LIDARR__POSTGRES__HOST
-              value: arr-postgres-rw.media.svc.cluster.local
-            - name: LIDARR__POSTGRES__PORT
-              value: "5432"
-            - name: LIDARR__POSTGRES__USER
-              valueFrom:
-                secretKeyRef:
-                  name: lidarr-postgres
-                  key: username
-            - name: LIDARR__POSTGRES__PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: lidarr-postgres
-                  key: password
-            - name: LIDARR__POSTGRES__MAINDB
-              value: lidarr-main
-            - name: LIDARR__POSTGRES__LOGDB
-              value: lidarr-log
-          volumeMounts:
-            - name: lidarr-config
-              mountPath: /config
-            - name: media
-              mountPath: /media
-            - name: downloads
-              mountPath: /downloads
-          ports:
-            - containerPort: 8686
-        - name: soularr
-          image: mrusse08/soularr:latest
-          env:
-            - name: SCRIPT_INTERVAL
-              value: "600"
-          volumeMounts:
-            - name: soularr-configmap
-              mountPath: /data/config.ini
-              subPath: config.ini
-            - name: soularr-data
-              mountPath: /data
-            - name: downloads
-              mountPath: /downloads
-      volumes:
+      - name: lidarr
+        image: lscr.io/linuxserver/lidarr
+        env:
+        - name: PUID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: UID
+        - name: PGID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: GID
+        - name: LIDARR__AUTH__APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: arr-token-secret
+              key: lidarr
+        - name: LIDARR__AUTH__REQUIRED
+          value: DisabledForLocalAddresses
+        - name: LIDARR__AUTH__METHOD
+          value: External
+        - name: LIDARR__POSTGRES__HOST
+          value: arr-postgres-rw.media.svc.cluster.local
+        - name: LIDARR__POSTGRES__PORT
+          value: "5432"
+        - name: LIDARR__POSTGRES__USER
+          valueFrom:
+            secretKeyRef:
+              name: lidarr-postgres
+              key: username
+        - name: LIDARR__POSTGRES__PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: lidarr-postgres
+              key: password
+        - name: LIDARR__POSTGRES__MAINDB
+          value: lidarr-main
+        - name: LIDARR__POSTGRES__LOGDB
+          value: lidarr-log
+        volumeMounts:
         - name: lidarr-config
-          persistentVolumeClaim:
-            claimName: lidarr-config
-        - name: soularr-data
-          persistentVolumeClaim:
-            claimName: soularr-data
+          mountPath: /config
         - name: media
-          persistentVolumeClaim:
-            claimName: nfs-media
+          mountPath: /media
         - name: downloads
-          persistentVolumeClaim:
-            claimName: nfs-downloads
-        - name: nfs-auth
-          secret:
-            secretName: nfs-auth
-        - name: arr-token-secret
-          secret:
-            secretName: arr-token-secret
+          mountPath: /downloads
+        ports:
+        - containerPort: 8686
+
+      - name: soularr
+        image: mrusse08/soularr:latest
+        env:
+        - name: SCRIPT_INTERVAL
+          value: "600"
+        volumeMounts:
         - name: soularr-configmap
-          secret:
-            secretName: soularr-configmap
-        - name: tun
-          hostPath:
-            path: /dev/net/tun
+          mountPath: /data/config.ini
+          subPath: config.ini
+        - name: soularr-data
+          mountPath: /data
+        - name: downloads
+          mountPath: /downloads
+          
+      volumes:
+      - name: lidarr-config
+        persistentVolumeClaim:
+          claimName: lidarr-config
+      - name: soularr-data
+        persistentVolumeClaim:
+          claimName: soularr-data
+      - name: media
+        persistentVolumeClaim:
+          claimName: nfs-media
+      - name: downloads
+        persistentVolumeClaim:
+          claimName: nfs-downloads
+      - name: nfs-auth
+        secret:
+          secretName: nfs-auth
+      - name: arr-token-secret
+        secret:
+          secretName: arr-token-secret
+      - name: soularr-configmap
+        secret:
+          secretName: soularr-configmap
+      - name: tun
+        hostPath:
+          path: /dev/net/tun

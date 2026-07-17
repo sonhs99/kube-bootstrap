@@ -14,66 +14,67 @@ spec:
         app: radarr
     spec:
       containers:
-        - name: radarr
-          image: lscr.io/linuxserver/radarr
-          env:
-            - name: PUID
-              valueFrom:
-                secretKeyRef:
-                  name: nfs-auth
-                  key: UID
-            - name: PGID
-              valueFrom:
-                secretKeyRef:
-                  name: nfs-auth
-                  key: GID
-            - name: RADARR__AUTH__APIKEY
-              valueFrom:
-                secretKeyRef:
-                  name: arr-token-secret
-                  key: radarr
-            - name: RADARR__AUTH__REQUIRED
-              value: DisabledForLocalAddresses
-            - name: RADARR__AUTH__METHOD
-              value: External
-            - name: SONARR__POSTGRES__PORT
-              value: "5432"
-            - name: RADARR__POSTGRES__USER
-              valueFrom:
-                secretKeyRef:
-                  name: radarr-postgres
-                  key: username
-            - name: RADARR__POSTGRES__PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: radarr-postgres
-                  key: password
-            - name: RADARR__POSTGRES__MAINDB
-              value: radarr-main
-            - name: RADARR__POSTGRES__LOGDB
-              value: radarr-log
-          volumeMounts:
-            - name: radarr-config
-              mountPath: /config
-            - name: media
-              mountPath: /media
-            - name: downloads
-              mountPath: /downloads
-          ports:
-            - containerPort: 7878
-      volumes:
+      - name: radarr
+        image: lscr.io/linuxserver/radarr
+        env:
+        - name: PUID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: UID
+        - name: PGID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: GID
+        - name: RADARR__AUTH__APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: arr-token-secret
+              key: radarr
+        - name: RADARR__AUTH__REQUIRED
+          value: DisabledForLocalAddresses
+        - name: RADARR__AUTH__METHOD
+          value: External
+        - name: SONARR__POSTGRES__PORT
+          value: "5432"
+        - name: RADARR__POSTGRES__USER
+          valueFrom:
+            secretKeyRef:
+              name: radarr-postgres
+              key: username
+        - name: RADARR__POSTGRES__PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: radarr-postgres
+              key: password
+        - name: RADARR__POSTGRES__MAINDB
+          value: radarr-main
+        - name: RADARR__POSTGRES__LOGDB
+          value: radarr-log
+        volumeMounts:
         - name: radarr-config
-          persistentVolumeClaim:
-            claimName: radarr-config
+          mountPath: /config
         - name: media
-          persistentVolumeClaim:
-            claimName: nfs-media
+          mountPath: /media
         - name: downloads
-          persistentVolumeClaim:
-            claimName: nfs-downloads
-        - name: nfs-auth
-          secret:
-            secretName: nfs-auth
-        - name: arr-token-secret
-          secret:
-            secretName: arr-token-secret
+          mountPath: /downloads
+        ports:
+        - containerPort: 7878
+          
+      volumes:
+      - name: radarr-config
+        persistentVolumeClaim:
+          claimName: radarr-config
+      - name: media
+        persistentVolumeClaim:
+          claimName: nfs-media
+      - name: downloads
+        persistentVolumeClaim:
+          claimName: nfs-downloads
+      - name: nfs-auth
+        secret:
+          secretName: nfs-auth
+      - name: arr-token-secret
+        secret:
+          secretName: arr-token-secret
