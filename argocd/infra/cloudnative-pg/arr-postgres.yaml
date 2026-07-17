@@ -39,12 +39,3 @@ spec:
 
   monitoring:
     enablePodMonitor: true
-
-  affinity:
-    enablePodAntiAffinity: true
-    topologyKey: kubernetes.io/hostname
-    podAntiAffinityType: preferred
-
-  persistentVolumeClaimRetentionPolicy:
-    whenDeleted: retain
-    whenScaled: retain
