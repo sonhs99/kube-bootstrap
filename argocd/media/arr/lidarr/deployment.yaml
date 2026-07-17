@@ -36,6 +36,24 @@ spec:
           value: DisabledForLocalAddresses
         - name: LIDARR__AUTH__METHOD
           value: External
+        - name: LIDARR__POSTGRES__HOST
+          value: arr-postgres-rw.media.svc.cluster.local
+        - name: LIDARR__POSTGRES__PORT
+          value: "5432"
+        - name: LIDARR__POSTGRES__USER
+          valueFrom:
+            secretKeyRef:
+              name: lidarr-postgres
+              key: username
+        - name: LIDARR__POSTGRES__PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: lidarr-postgres
+              key: password
+        - name: LIDARR__POSTGRES__MAINDB
+          value: lidarr-main
+        - name: LIDARR__POSTGRES__LOGDB
+          value: lidarr-log
         volumeMounts:
         - name: lidarr-config
           mountPath: /config

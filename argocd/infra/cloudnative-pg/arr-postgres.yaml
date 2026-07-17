@@ -1,0 +1,50 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: arr-postgres
+  namespace: media
+spec:
+  description: PostgreSQL cluster for the ARR stack
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:17
+
+  primaryUpdateStrategy: unsupervised
+
+  bootstrap:
+    initdb:
+      encoding: UTF8
+      localeCType: C
+      localeCollate: C
+
+  storage:
+    storageClass: longhorn-pg
+    size: 10Gi
+
+  walStorage:
+    storageClass: longhorn-pg
+    size: 5Gi
+
+  postgresql:
+    parameters:
+      timezone: Asia/Seoul
+      log_timezone: Asia/Seoul
+
+      max_connections: "200"
+      shared_buffers: 256MB
+      effective_cache_size: 768MB
+      maintenance_work_mem: 64MB
+      work_mem: 4MB
+
+      shared_preload_libraries: pg_stat_statements
+
+  monitoring:
+    enablePodMonitor: true
+
+  affinity:
+    enablePodAntiAffinity: true
+    topologyKey: kubernetes.io/hostname
+    podAntiAffinityType: preferred
+
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: retain
+    whenScaled: retain

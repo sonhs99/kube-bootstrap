@@ -1,0 +1,23 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: arr-postgres-prowlarr-main
+  namespace: media
+spec:
+  cluster:
+    name: arr-postgres
+  name: prowlarr-main
+  owner: prowlarr
+  databaseReclaimPolicy: retain
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: arr-postgres-prowlarr-log
+  namespace: media
+spec:
+  cluster:
+    name: arr-postgres
+  name: prowlarr-log
+  owner: prowlarr
+  databaseReclaimPolicy: retain

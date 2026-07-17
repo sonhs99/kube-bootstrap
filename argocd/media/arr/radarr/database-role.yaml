@@ -1,0 +1,19 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: arr-postgres-radarr
+  namespace: media
+spec:
+  cluster:
+    name: arr-postgres
+  name: radarr
+  login: true
+  superuser: false
+  createdb: false
+  createrole: false
+  replication: false
+  connectionLimit: 30
+  databaseRoleReclaimPolicy: retain
+  passwordSecret:
+    name: radarr-postgres

@@ -1,0 +1,18 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: arr-postgres-sonarr
+  namespace: media
+spec:
+  cluster:
+    name: arr-postgres
+  name: sonarr
+  login: true
+  superuser: false
+  createdb: false
+  createrole: false
+  replication: false
+  connectionLimit: 30
+  databaseRoleReclaimPolicy: retain
+  passwordSecret:
+    name: sonarr-postgres

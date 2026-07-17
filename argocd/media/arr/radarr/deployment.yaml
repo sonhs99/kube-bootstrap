@@ -36,6 +36,22 @@ spec:
           value: DisabledForLocalAddresses
         - name: RADARR__AUTH__METHOD
           value: External
+                - name: SONARR__POSTGRES__PORT
+          value: "5432"
+        - name: RADARR__POSTGRES__USER
+          valueFrom:
+            secretKeyRef:
+              name: radarr-postgres
+              key: username
+        - name: RADARR__POSTGRES__PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: radarr-postgres
+              key: password
+        - name: RADARR__POSTGRES__MAINDB
+          value: radarr-main
+        - name: RADARR__POSTGRES__LOGDB
+          value: radarr-log
         volumeMounts:
         - name: radarr-config
           mountPath: /config

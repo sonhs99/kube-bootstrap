@@ -36,6 +36,24 @@ spec:
           value: DisabledForLocalAddresses
         - name: PROWLARR__AUTH__METHOD
           value: External
+                - name: SONARR__POSTGRES__HOST
+          value: arr-postgres-rw.media.svc.cluster.local
+        - name: PROWLARR__POSTGRES__PORT
+          value: "5432"
+        - name: PROWLARR__POSTGRES__USER
+          valueFrom:
+            secretKeyRef:
+              name: prowlarr-postgres
+              key: username
+        - name: PROWLARR__POSTGRES__PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: prowlarr-postgres
+              key: password
+        - name: PROWLARR__POSTGRES__MAINDB
+          value: prowlarr-main
+        - name: PROWLARR__POSTGRES__LOGDB
+          value: prowlarr-log
         volumeMounts:
         - name: prowlarr-config
           mountPath: /config

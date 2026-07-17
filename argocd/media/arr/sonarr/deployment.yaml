@@ -36,6 +36,22 @@ spec:
           value: DisabledForLocalAddresses
         - name: SONARR__AUTH__METHOD
           value: External
+                - name: SONARR__POSTGRES__PORT
+          value: "5432"
+        - name: SONARR__POSTGRES__USER
+          valueFrom:
+            secretKeyRef:
+              name: sonarr-postgres
+              key: username
+        - name: SONARR__POSTGRES__PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sonarr-postgres
+              key: password
+        - name: SONARR__POSTGRES__MAINDB
+          value: sonarr-main
+        - name: SONARR__POSTGRES__LOGDB
+          value: sonarr-log
         volumeMounts:
         - name: sonarr-config
           mountPath: /config
