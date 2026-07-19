@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: download-app
+  name: download-common
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,9 +10,7 @@ spec:
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
-    path: argocd/media/download
-    directory:
-      recurse: true
+    path: argocd/media/download/common
   destination:
     server: https://kubernetes.default.svc
     namespace: media
