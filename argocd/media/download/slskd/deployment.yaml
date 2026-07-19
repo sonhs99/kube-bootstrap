@@ -93,6 +93,9 @@ spec:
         - name: downloads
           persistentVolumeClaim:
             claimName: nfs-downloads
+        - name: template
+          configMap:
+            name: slskd-config-template
         - name: tun
           hostPath:
             path: /dev/net/tun
