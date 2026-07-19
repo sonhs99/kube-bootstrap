@@ -93,9 +93,5 @@ resource "helm_release" "cilium" {
     })
   ]
 
-  lifecycle {
-    prevent_destroy = true
-  }
-
   depends_on = [time_sleep.wait_for_kube]
 }

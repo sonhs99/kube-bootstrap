@@ -30,13 +30,13 @@ spec:
         - name: RADARR__AUTH__APIKEY
           valueFrom:
             secretKeyRef:
-              name: arr-token-secret
-              key: radarr
+              name: radarr-auth-secret
+              key: token
         - name: RADARR__AUTH__REQUIRED
           value: DisabledForLocalAddresses
         - name: RADARR__AUTH__METHOD
           value: External
-        - name: SONARR__POSTGRES__PORT
+        - name: RADARR__POSTGRES__PORT
           value: "5432"
         - name: RADARR__POSTGRES__USER
           valueFrom:

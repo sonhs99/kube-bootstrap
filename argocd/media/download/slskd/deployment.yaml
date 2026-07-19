@@ -7,40 +7,32 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: qbittorrent
+      app: slskd
   template:
     metadata:
       labels:
-        app: qbittorrent
+        app: slskd
     spec:
-      containers:
-        - name: qbittorrent
-          image: lscr.io/linuxserver/qbittorrent
-          resources:
-            limits:
-              memory: "2Gi"
-            requests:
-              memory: "512Mi"
-          env:
-          - name: PUID
-            valueFrom:
-              secretKeyRef:
-                name: nfs-auth
-                key: UID
-          - name: PGID
-            valueFrom:
-              secretKeyRef:
-                name: nfs-auth
-                key: GID
-          volumeMounts:
-            - name: qbittorrent-config
-              mountPath: /config
-            - name: downloads
-              mountPath: /downloads
-          ports:
-            - containerPort: 8080
-              name: qbitt-http
+      initContainers:
+        - name: render-config
+          image: alpine:3.22
+          command:
+            - sh
+            - -c
+            - |
+              apk add --no-cache gettext
+              envsubst < /template/slskd.yml > /config/slskd.yml
 
+          envFrom:
+            - secretRef:
+                name: slskd-auth-secret
+          volumeMounts:
+            - name: template
+              mountPath: /template
+
+            - name: data
+              mountPath: /app
+      containers:
         - name: slskd
           image: slskd/slskd:latest
           env:
@@ -49,7 +41,7 @@ spec:
             - name: SLSKD_SHARED_DIR
               value: "/mnt/music"
           volumeMounts:
-            - name: slskd-config
+            - name: data
               mountPath: /app
             - name: media
               mountPath: /mnt/music
@@ -95,12 +87,9 @@ spec:
         - name: media
           persistentVolumeClaim:
             claimName: nfs-media
-        - name: qbittorrent-config
+        - name: data
           persistentVolumeClaim:
-            claimName: qbittorrent-config
-        - name: slskd-config
-          persistentVolumeClaim:
-            claimName: slskd-config
+            claimName: slskd-data
         - name: downloads
           persistentVolumeClaim:
             claimName: nfs-downloads

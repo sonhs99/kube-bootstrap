@@ -1,7 +1,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: musicseerr-internal-route
+  name: droppedneedle-internal-route
   namespace: media
 spec:
   parentRefs:
@@ -9,12 +9,12 @@ spec:
     kind: Gateway	
     name: gateway-internal
     namespace: default
-  hostnames: ["musicseerr.internal.lazydogs.work"]
+  hostnames: ["droppedneedle.internal.lazydogs.work"]
   rules:
   - backendRefs:
       - group: ''	
         kind: Service	
-        name: musicseerr
+        name: droppedneedle
         port: 80
         weight: 1
     matches:
@@ -25,7 +25,7 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: musicseerr-route
+  name: droppedneedle-route
   namespace: media
 spec:
   parentRefs:
@@ -33,12 +33,12 @@ spec:
     kind: Gateway	
     name: gateway-default
     namespace: default
-  hostnames: ["musicseerr.lazydogs.work"]
+  hostnames: ["droppedneedle.lazydogs.work"]
   rules:
   - backendRefs:
       - group: ''	
         kind: Service	
-        name: musicseerr
+        name: droppedneedle
         port: 80
         weight: 1
     matches:

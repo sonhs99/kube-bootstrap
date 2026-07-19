@@ -30,8 +30,8 @@ spec:
         - name: SONARR__AUTH__APIKEY
           valueFrom:
             secretKeyRef:
-              name: arr-token-secret
-              key: sonarr
+              name: sonarr-auth-secret
+              key: token
         - name: SONARR__AUTH__REQUIRED
           value: DisabledForLocalAddresses
         - name: SONARR__AUTH__METHOD

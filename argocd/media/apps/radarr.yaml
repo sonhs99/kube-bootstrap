@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: arr-app
+  name: radarr
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
-    path: "argocd/media/arr"
+    path: argocd/media/arr/radarr
     directory:
       recurse: true
   destination:

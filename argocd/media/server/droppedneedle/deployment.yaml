@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: droppedneedle
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: droppedneedle
+  template:
+    metadata:
+      labels:
+        app: droppedneedle
+    spec:
+      securityContext:
+        runAsUser: 1000 
+        runAsGroup: 1000
+        fsGroup: 1000
+      containers:
+      - name: droppedneedle
+        image: ghcr.io/habirabbu/droppedneedle
+        envs:
+        - name: SLSKD_DOWNLOADS_PATH
+          value: /downloads/soulseek
+        volumeMounts:
+        - name: data
+          mountPath: /app/config
+          subPath: data
+        - name: data
+          mountPath: /app/cache
+          subPath: cache
+        - name: downloads
+          mountPath: /downloads
+        ports:
+        - containerPort: 8688
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: droppedneedle-data
+      - name: downloads
+        persistentVolumeClaim:
+          claimName: nfs-downloads

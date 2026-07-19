@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: slskd-config-template
+  namespace: media
+data:
+  slskd.yml: |
+    directories:
+      downloads: ${DOWNLOAD_PATH}
+    web:
+      authentication:
+        username: ${USERNAME}
+        password: ${PASSWORD}
+        api_keys:
+          my_api_key:
+            key: ${TOKEN}
+            cidr: 192.168.0.0/16,::1
+    soulseek:
+      username: ${SOULSEEK_USERNAME}
+      password: ${SOULSEEK_PASSWORD}
