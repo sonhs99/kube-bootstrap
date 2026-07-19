@@ -32,6 +32,9 @@ spec:
           subPath: cache
         - name: downloads
           mountPath: /downloads
+        - name: media
+          mountPath: /mnt/music
+          subPath: Music
         ports:
         - containerPort: 8688
       volumes:
@@ -41,3 +44,6 @@ spec:
       - name: downloads
         persistentVolumeClaim:
           claimName: nfs-downloads
+      - name: media
+        persistentVolumeClaim:
+          claimName: nfs-media
