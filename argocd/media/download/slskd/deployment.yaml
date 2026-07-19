@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: downloader
+  name: slskd
   namespace: media
 spec:
   replicas: 1
