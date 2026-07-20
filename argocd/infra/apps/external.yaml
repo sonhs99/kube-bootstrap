@@ -16,6 +16,12 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
+  ignoreDifferences:
+    - namespace: cilium-secrets
+      group: "*"
+      kind: "*"
+      jsonPointers:
+        - /
   syncPolicy:
     automated:
       prune: true
