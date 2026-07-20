@@ -30,6 +30,18 @@ spec:
 
           applicationSet:
             replicas: 1
+
+          configs:
+            cm:
+              resource.exclusions: |
+                - apiGroups:
+                    - ""
+                  kinds:
+                    - Secret
+                  clusters:
+                    - "*"
+                  namespaces:
+                    - cilium-secrets
     - repoURL: https://github.com/sonhs99/kube-bootstrap.git
       targetRevision: main
       ref: repo
