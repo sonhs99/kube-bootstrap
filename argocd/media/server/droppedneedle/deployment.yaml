@@ -14,9 +14,9 @@ spec:
         app: droppedneedle
     spec:
       securityContext:
-        runAsUser: 1000 
-        runAsGroup: 1000
-        fsGroup: 1000
+        runAsUser: 0 
+        runAsGroup: 0
+        privileged: true
       containers:
       - name: droppedneedle
         image: ghcr.io/habirabbu/droppedneedle
