@@ -22,7 +22,9 @@ spec:
             - |
               apk add --no-cache gettext
               envsubst < /template/slskd.yml > /app/slskd.yml
-
+          env:
+            - name: DOWNLOAD_PATH
+              value: /downloads
           envFrom:
             - secretRef:
                 name: slskd-auth-secret
