@@ -22,7 +22,7 @@ spec:
         image: ghcr.io/habirabbu/droppedneedle
         env:
         - name: SLSKD_DOWNLOADS_PATH
-          value: /downloads
+          value: /downloads/soulseek
         volumeMounts:
         - name: data
           mountPath: /app/config
@@ -32,7 +32,6 @@ spec:
           subPath: cache
         - name: downloads
           mountPath: /downloads
-          subPath: soulseek
         - name: media
           mountPath: /music
           subPath: Music
