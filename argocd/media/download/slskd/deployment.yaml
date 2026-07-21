@@ -24,7 +24,7 @@ spec:
               envsubst < /template/slskd.yml > /app/slskd.yml
           env:
             - name: DOWNLOAD_PATH
-              value: /downloads
+              value: /downloads/soulseek
           envFrom:
             - secretRef:
                 name: slskd-auth-secret
