@@ -22,4 +22,4 @@ spec:
         - name: PGADMIN_DEFAULT_PASSWORD
           value: admin123
         ports:
-        - containerPort: 5050
+        - containerPort: 8080
