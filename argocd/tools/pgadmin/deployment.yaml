@@ -18,7 +18,7 @@ spec:
         image: dpage/pgadmin4:latest
         env:
         - name: PGADMIN_DEFAULT_EMAIL
-          value: /downloads/soulseek
+          value: pgadmin4@pgadmin.org
         - name: PGADMIN_DEFAULT_PASSWORD
           value: admin123
         ports:
