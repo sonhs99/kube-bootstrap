@@ -36,6 +36,8 @@ spec:
           value: DisabledForLocalAddresses
         - name: RADARR__AUTH__METHOD
           value: External
+        - name: RADARR__POSTGRES__HOST
+          value: arr-postgres-rw.media.svc.cluster.local
         - name: RADARR__POSTGRES__PORT
           value: "5432"
         - name: RADARR__POSTGRES__USER

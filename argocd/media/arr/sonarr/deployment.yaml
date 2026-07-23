@@ -36,6 +36,8 @@ spec:
           value: DisabledForLocalAddresses
         - name: SONARR__AUTH__METHOD
           value: External
+        - name: SONARR__POSTGRES__HOST
+          value: arr-postgres-rw.media.svc.cluster.local
         - name: SONARR__POSTGRES__PORT
           value: "5432"
         - name: SONARR__POSTGRES__USER
