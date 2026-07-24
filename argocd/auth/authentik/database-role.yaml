@@ -6,7 +6,7 @@ metadata:
 spec:
   cluster:
     name: auth-postgres
-  name: lidarr
+  name: authentik
   login: true
   superuser: false
   createdb: false
