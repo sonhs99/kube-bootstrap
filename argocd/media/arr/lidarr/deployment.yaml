@@ -59,7 +59,7 @@ spec:
           mountPath: /config
         - name: media
           mountPath: /music
-          subPath: /Music
+          subPath: Music
         - name: downloads
           mountPath: /downloads
         ports:
