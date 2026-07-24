@@ -1,7 +1,7 @@
 global:
   env:
     - name: AUTHENTIK_POSTGRESQL__HOST
-      value: auth-postgresql-rw
+      value: auth-postgres-rw
 
     - name: AUTHENTIK_POSTGRESQL__PORT
       value: "5432"
