@@ -15,7 +15,7 @@ spec:
           podMonitorEnabled: true
           grafanaDashboard:
             create: true
-            namespace: monitoring
+            namespace: observablitiy
   destination:
     namespace: cnpg-system
     server: https://kubernetes.default.svc
