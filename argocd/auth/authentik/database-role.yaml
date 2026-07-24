@@ -2,7 +2,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: DatabaseRole
 metadata:
   name: auth-postgres-authentik
-  namespace: media
+  namespace: auth
 spec:
   cluster:
     name: auth-postgres
