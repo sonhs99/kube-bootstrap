@@ -26,6 +26,7 @@ global:
         secretKeyRef:
           name: authentik-auth-secret
           key: token
+  envFrom: []
 
 authentik:
     error_reporting:
