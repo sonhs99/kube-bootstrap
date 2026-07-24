@@ -5,7 +5,7 @@ metadata:
   namespace: auth
 spec:
   cluster:
-    name: arr-postgres
+    name: auth-postgres
   name: authentik
   owner: authentik
   databaseReclaimPolicy: retain
