@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cloudnative-pg-app
+  name: seerr
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
-    path: "argocd/bootstrap/cloudnative-pg"
+    path: argocd/media/server/seerr
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: media
   syncPolicy:
     automated:
       prune: true

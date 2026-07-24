@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
-    path: "argocd/bootstrap/apps"
+    path: argocd/bootstrap
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

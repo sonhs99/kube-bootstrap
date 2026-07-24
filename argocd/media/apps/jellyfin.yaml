@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: shared-storage-app
+  name: jellyfin
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
-    path: "argocd/media/shared-storage"
+    path: argocd/media/server/jellyfin
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: media

@@ -3,8 +3,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: vaultwarden-config
   namespace: auth
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
 spec:
   accessModes:
     - ReadWriteOnce

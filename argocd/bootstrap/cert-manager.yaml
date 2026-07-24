@@ -1,19 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager-app
+  name: cert-manager
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/sonhs99/kube-bootstrap.git
-    targetRevision: main
-    path: "argocd/bootstrap/cert-manager"
+    repoURL: https://charts.jetstack.io
+    chart: cert-manager
+    targetRevision: v1.19.2 
+    helm:
+      values: |
+        crds:
+          enabled: true
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: cert-manager
   syncPolicy:
     automated:
       prune: true

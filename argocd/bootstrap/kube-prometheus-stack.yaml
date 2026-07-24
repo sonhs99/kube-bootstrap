@@ -11,13 +11,13 @@ spec:
       chart: kube-prometheus-stack
       helm:
           valueFiles:
-            - $repo/argocd/bootstrap/monitoring/kube-prometheus-stack-values.yaml
+            - $repo/argocd/bootstrap/values/kube-prometheus-stack-values.yaml
     - repoURL: https://github.com/sonhs99/kube-bootstrap.git
       targetRevision: main
       ref: repo
 
   destination:
-    namespace: monitoring
+    namespace: observablitiy
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

@@ -1,13 +1,35 @@
+global:
+  env:
+    - name: AUTHENTIK_POSTGRESQL__HOST
+      value: auth-postgresql-rw
+
+    - name: AUTHENTIK_POSTGRESQL__PORT
+      value: "5432"
+
+    - name: AUTHENTIK_POSTGRESQL__NAME
+      value: authentik
+
+    - name: AUTHENTIK_POSTGRESQL__USER
+      valueFrom:
+        secretKeyRef:
+          name: database-secret
+          key: username
+
+    - name: AUTHENTIK_POSTGRESQL__PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: database-secret
+          key: password
+
+    - name: AUTHENTIK_SECRET_KEY
+      valueFrom:
+        secretKeyRef:
+          name: authentik-auth-secret
+          key: token
+
 authentik:
-    secret_key: "ZZFjFoKyjwobbe68Tyj7C97WoGJhRGH9bQUoW8ypQ7BXS7YpcLWjhVW7Zz2g"
-    # This sends anonymous usage-data, stack traces on errors and
-    # performance data to sentry.io, and is fully opt-in
     error_reporting:
         enabled: true
-    postgresql:
-        password: "G7x72pdLOUXk4hulj2T3vG1fABlr0WYK2CLZ"
 
 postgresql:
-    enabled: true
-    auth:
-        password: "G7x72pdLOUXk4hulj2T3vG1fABlr0WYK2CLZ"
+    enabled: false

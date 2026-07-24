@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lidarr
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lidarr
+  template:
+    metadata:
+      labels:
+        app: lidarr
+    spec:
+      containers:
+      - name: lidarr
+        image: lscr.io/linuxserver/lidarr
+        env:
+        - name: PUID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: UID
+        - name: PGID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: GID
+        - name: LIDARR__AUTH__APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: lidarr-auth-secret
+              key: token
+        - name: LIDARR__AUTH__REQUIRED
+          value: DisabledForLocalAddresses
+        - name: LIDARR__AUTH__METHOD
+          value: External
+        - name: LIDARR__POSTGRES__HOST
+          value: arr-postgres-rw.media.svc.cluster.local
+        - name: LIDARR__POSTGRES__PORT
+          value: "5432"
+        - name: LIDARR__POSTGRES__USER
+          valueFrom:
+            secretKeyRef:
+              name: lidarr-postgres
+              key: username
+        - name: LIDARR__POSTGRES__PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: lidarr-postgres
+              key: password
+        - name: LIDARR__POSTGRES__MAINDB
+          value: lidarr-main
+        - name: LIDARR__POSTGRES__LOGDB
+          value: lidarr-log
+        volumeMounts:
+        - name: lidarr-config
+          mountPath: /config
+        - name: media
+          mountPath: /music
+          subPath: /Music
+        - name: downloads
+          mountPath: /downloads
+        ports:
+        - containerPort: 8686
+          
+      volumes:
+      - name: lidarr-config
+        persistentVolumeClaim:
+          claimName: lidarr-config
+      - name: media
+        persistentVolumeClaim:
+          claimName: nfs-media
+      - name: downloads
+        persistentVolumeClaim:
+          claimName: nfs-downloads
+      - name: nfs-auth
+        secret:
+          secretName: nfs-auth
+      - name: arr-token-secret
+        secret:
+          secretName: arr-token-secret

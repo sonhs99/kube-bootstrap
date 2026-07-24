@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: csi-driver-nfs-app
+  name: media-common
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
-    path: "argocd/bootstrap/csi-driver-nfs"
+    path: argocd/media/common
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: media
   syncPolicy:
     automated:
       prune: true

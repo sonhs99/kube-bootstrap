@@ -1,24 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cilium
+  name: longhorn
   namespace: argocd
 spec:
   project: default
   sources:
-    - repoURL: https://helm.cilium.io/
-      chart: cilium
-      targetRevision: 1.20.0-pre.3
+    - repoURL: https://charts.longhorn.io
+      chart: longhorn
+      targetRevision: 1.11.2
       helm:
         valueFiles:
-          - $repo/argocd/bootstrap/cilium/cilium-values.yaml
+          - $repo/argocd/bootstrap/values/longhorn-values.yaml
     - repoURL: https://github.com/sonhs99/kube-bootstrap.git
       targetRevision: main
       ref: repo
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: longhorn-system
   syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=false
       - ServerSideApply=true

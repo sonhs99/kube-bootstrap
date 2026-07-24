@@ -1,0 +1,46 @@
+service:
+  ui:
+    type: NodePort
+    nodePort: 30002
+  manager:
+    type: ClusterIP
+    nodePort: ""
+persistence:
+  defaultClass: true
+  defaultFsType: ext4
+  defaultMkfsParams: ""
+  defaultClassReplicaCount: 2
+  defaultDataLocality: disabled
+  reclaimPolicy: Retain
+  volumeBindingMode: Immediate
+  migratable: false
+  disableRevisionCounter: "true"
+  nfsOptions: ""
+  recurringJobSelector:
+    enable: false
+    jobList: []
+  backingImage:
+    enable: false
+    name: null
+    dataSourceType: null
+    dataSourceParameters: null
+    expectedChecksum: null
+  unmapMarkSnapChainRemoved: ignored
+  dataEngine: v1
+  backupTargetName: default
+preUpgradeChecker:
+  jobEnabled: false
+  upgradeVersionCheck: true
+defaultBackupStore:
+  backupTarget: nfs://192.168.88.6:/volume1/Apps/longhorn-backup
+  backupTargetCredentialSecret: ""
+  pollInterval: 180
+longhornUI:
+  replicas: 2
+metrics:
+  serviceMonitor:
+    enabled: true
+openshift:
+  enabled: false
+enableGoCoverDir: false
+extraObjects: []

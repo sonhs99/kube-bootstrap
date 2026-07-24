@@ -1,0 +1,18 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: arr-lidarr-prowlarr
+  namespace: media
+spec:
+  cluster:
+    name: arr-postgres
+  name: lidarr
+  login: true
+  superuser: false
+  createdb: false
+  createrole: false
+  replication: false
+  connectionLimit: 30
+  databaseRoleReclaimPolicy: retain
+  passwordSecret:
+    name: lidarr-postgres
