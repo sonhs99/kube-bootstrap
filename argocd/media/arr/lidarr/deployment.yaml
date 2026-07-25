@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: lidarr
-        image: lscr.io/linuxserver/lidarr
+        image: lscr.io/linuxserver/lidarr:nightly
         env:
         - name: PUID
           valueFrom:
