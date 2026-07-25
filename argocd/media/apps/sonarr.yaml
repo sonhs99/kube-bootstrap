@@ -3,16 +3,12 @@ kind: Application
 metadata:
   name: sonarr
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
     path: argocd/media/arr/sonarr
-    directory:
-      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: media

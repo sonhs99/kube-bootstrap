@@ -9,8 +9,6 @@ spec:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
     path: argocd/media/server/navidrome
-    directory:
-      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: media

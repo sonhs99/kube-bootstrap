@@ -1,0 +1,47 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: aurral-internal-route
+  namespace: media
+spec:
+  parentRefs:
+  - group: gateway.networking.k8s.io	
+    kind: Gateway	
+    name: gateway-internal
+    namespace: default
+  hostnames: ["aurral.internal.lazydogs.work"]
+  rules:
+  - backendRefs:
+      - group: ''	
+        kind: Service	
+        name: aurral
+        port: 80
+        weight: 1
+    matches:
+      - path:
+          type: PathPrefix
+          value: /
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: aurral-route
+  namespace: media
+spec:
+  parentRefs:
+  - group: gateway.networking.k8s.io	
+    kind: Gateway	
+    name: gateway-default
+    namespace: default
+  hostnames: ["aurral.lazydogs.work"]
+  rules:
+  - backendRefs:
+      - group: ''	
+        kind: Service	
+        name: aurral
+        port: 80
+        weight: 1
+    matches:
+      - path:
+          type: PathPrefix
+          value: /

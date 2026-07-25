@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aurral
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aurral
+  template:
+    metadata:
+      labels:
+        app: aurral
+    spec:
+      containers:
+      - name: aurral
+        image: ghcr.io/lklynet/aurral:latest
+        env:
+        - name: SLSKD_DOWNLOADS_PATH
+          value: /downloads/soulseek
+        volumeMounts:
+        - name: data
+          mountPath: /data
+          subPath: data
+        - name: data
+          mountPath: /config
+          subPath: config
+        ports:
+        - containerPort: 3001
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: aurral-data

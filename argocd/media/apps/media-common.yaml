@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: media-common
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
