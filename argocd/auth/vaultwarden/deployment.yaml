@@ -16,6 +16,12 @@ spec:
       containers:
       - name: vaultwarden
         image: vaultwarden/server:latest
+        env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: valtwarden-postgres
+                key: url
         volumeMounts:
         - name: config
           mountPath: /data

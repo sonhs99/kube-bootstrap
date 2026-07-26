@@ -1,0 +1,18 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: auth-postgres-vaultwarden
+  namespace: auth
+spec:
+  cluster:
+    name: auth-postgres
+  name: vaultwarden
+  login: true
+  superuser: false
+  createdb: false
+  createrole: false
+  replication: false
+  connectionLimit: 30
+  databaseRoleReclaimPolicy: retain
+  passwordSecret:
+    name: vaultwarden-postgres

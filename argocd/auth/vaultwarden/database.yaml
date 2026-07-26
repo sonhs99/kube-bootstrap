@@ -1,11 +1,11 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Database
 metadata:
-  name: auth-postgres-authentik
+  name: auth-postgres-vaultwarden
   namespace: auth
 spec:
   cluster:
     name: auth-postgres
-  name: authentik
-  owner: authentik
+  name: vaultwarden
+  owner: vaultwarden
   databaseReclaimPolicy: retain
