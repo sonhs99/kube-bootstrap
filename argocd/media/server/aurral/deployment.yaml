@@ -20,9 +20,20 @@ spec:
         - name: data
           mountPath: /config
           subPath: config
+        - name: downloads
+          mountPath: /downloads
+        - name: media
+          mountPath: /music
+          subPath: Music
         ports:
         - containerPort: 3001
       volumes:
       - name: data
         persistentVolumeClaim:
           claimName: aurral-data
+      - name: downloads
+        persistentVolumeClaim:
+          claimName: nfs-downloads
+      - name: media
+        persistentVolumeClaim:
+          claimName: nfs-media
