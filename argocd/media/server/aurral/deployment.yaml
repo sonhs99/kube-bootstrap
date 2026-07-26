@@ -15,14 +15,8 @@ spec:
     spec:
       containers:
       - name: aurral
-        image: ghcr.io/lklynet/aurral:latest
-        env:
-        - name: SLSKD_DOWNLOADS_PATH
-          value: /downloads/soulseek
+        image: ghcr.io/lklynet/aurral:test
         volumeMounts:
-        - name: data
-          mountPath: /data
-          subPath: data
         - name: data
           mountPath: /config
           subPath: config
