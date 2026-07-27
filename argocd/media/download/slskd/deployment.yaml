@@ -38,6 +38,16 @@ spec:
         - name: slskd
           image: slskd/slskd:latest
           env:
+            - name: PUID
+              valueFrom:
+                secretKeyRef:
+                  name: nfs-auth
+                  key: UID
+            - name: PGID
+              valueFrom:
+                secretKeyRef:
+                  name: nfs-auth
+                  key: GID
             - name: SLSKD_REMOTE_CONFIGURATION
               value: "true"
             - name: SLSKD_SHARED_DIR
