@@ -43,12 +43,12 @@ resource "proxmox_virtual_environment_vm" "talos" {
     dedicated = each.value.memory_mb
     floating  = 0
   }
-
+  
   dynamic "disk" {
     for_each = each.value.disk_gb
     content {
       datastore_id = var.vm_datastore
-      interface    = "scsi0"
+      interface    = "scsi${index(eatch.value.disk_gb, disk.value)}"
       size         = disk.value
       discard      = "on"
       iothread     = true
