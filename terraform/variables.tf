@@ -94,7 +94,7 @@ variable "nodes" {
     ip           = string
     cpu          = number
     memory_mb    = number
-    disk_gb      = number
+    disk_gb      = list(number)
     mac_address  = string
   }))
 }

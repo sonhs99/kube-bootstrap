@@ -44,14 +44,18 @@ resource "proxmox_virtual_environment_vm" "talos" {
     floating  = 0
   }
 
-  disk {
-    datastore_id = var.vm_datastore
-    interface    = "scsi0"
-    size         = each.value.disk_gb
-    discard      = "on"
-    iothread     = true
-    ssd          = true
+  dynamic "disk" {
+    for_each = each.value.disk_gb
+    content {
+      datastore_id = var.vm_datastore
+      interface    = "scsi0"
+      size         = disk.value
+      discard      = "on"
+      iothread     = true
+      ssd          = true
+    }
   }
+  
 
   cdrom {
     file_id     = "${var.iso_datastore}:iso/${proxmox_download_file.talos_image[each.value.proxmox_node].file_name}"

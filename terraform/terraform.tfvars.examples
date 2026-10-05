@@ -27,7 +27,7 @@ nodes = {
     ip           = "10.0.0.1"
     cpu          = 4
     memory_mb    = 8192
-    disk_gb      = 64
+    disk_gb      = [64]
     mac_address  = "00:00:00:00:00:00"
   }
 
@@ -38,7 +38,7 @@ nodes = {
     ip           = "10.0.0.2"
     cpu          = 8
     memory_mb    = 12288
-    disk_gb      = 256
+    disk_gb      = [256]
     mac_address  = "00:00:00:00:00:00"
   }
   talos-wk-02 = {
@@ -48,7 +48,7 @@ nodes = {
     ip           = "10.0.0.3"
     cpu          = 8
     memory_mb    = 12288
-    disk_gb      = 256
+    disk_gb      = [256]
     mac_address  = "00:00:00:00:00:00"
   }
 }

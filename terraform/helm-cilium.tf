@@ -3,7 +3,7 @@ resource "helm_release" "cilium" {
   namespace        = "kube-system"
   repository       = "https://helm.cilium.io/"
   chart            = "cilium"
-  version          = "1.20.0-pre.3"
+  version          = "1.20.2"
   create_namespace = false
 
   values = [
@@ -92,6 +92,10 @@ resource "helm_release" "cilium" {
       }
     })
   ]
+
+  lifecycle {
+    ignore_changes = all
+  }
 
   depends_on = [time_sleep.wait_for_kube]
 }
