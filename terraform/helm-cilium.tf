@@ -93,9 +93,8 @@ resource "helm_release" "cilium" {
     })
   ]
 
-  lifecycle {
-    ignore_changes = all
-  }
-
-  depends_on = [time_sleep.wait_for_kube]
+  depends_on = [
+    time_sleep.wait_for_kube,
+    kubectl_manifest.gateway_api_crds
+  ]
 }

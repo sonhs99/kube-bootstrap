@@ -17,7 +17,7 @@ resource "helm_release" "argocd" {
   namespace  = kubernetes_namespace.argocd.metadata[0].name
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo-cd"
-  version    = "7.7.16"
+  version    = "10.10.2"
 
   values = [
     yamlencode({
@@ -50,10 +50,6 @@ resource "helm_release" "argocd" {
       }
     })
   ]
-
-  lifecycle {
-    ignore_changes = all
-  }
   
   depends_on = [
     time_sleep.wait_for_kube,
