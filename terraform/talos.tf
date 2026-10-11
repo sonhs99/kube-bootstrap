@@ -27,8 +27,9 @@ data "talos_image_factory_urls" "this" {
 }
 
 data "talos_machine_configuration" "controlplane" {
+  for_each = local.controlplanes
   cluster_name     = var.cluster_name
-  cluster_endpoint = var.cluster_endpoint
+  cluster_endpoint = local.cluster_endpoint
   machine_type     = "controlplane"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
   talos_version    = var.talos_version
@@ -53,13 +54,27 @@ data "talos_machine_configuration" "controlplane" {
           disabled = true
         }
       }
-    })
+    }),
+    yamlencode({
+      machine = {
+        network = {
+          interfaces = [{
+            deviceSelector = [{
+              hardwareAddr = each.value.mac_address
+            }]
+            vip = {
+              ip = var.cluster_endpoint_ip
+            }
+          }]
+        }
+      }
+    }),
   ]
 }
 
 data "talos_machine_configuration" "worker" {
   cluster_name     = var.cluster_name
-  cluster_endpoint = var.cluster_endpoint
+  cluster_endpoint = local.cluster_endpoint
   machine_type     = "worker"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
   talos_version    = var.talos_version
@@ -74,6 +89,17 @@ data "talos_machine_configuration" "worker" {
         }
       }
     }),
+    yamlencode({
+      machine = {
+        disks = [{
+          device = "/dev/sdb"
+          partition = [{
+            mountpoint = "/var/mnt/longhorn"
+            size = 0
+          }]
+        }] 
+      }
+    }),
   ]
 }
 
@@ -85,12 +111,30 @@ resource "talos_machine_configuration_apply" "controlplane" {
   ]
 
   client_configuration        = talos_machine_secrets.this.client_configuration
-  machine_configuration_input = data.talos_machine_configuration.controlplane.machine_configuration
+  machine_configuration_input = data.talos_machine_configuration.controlplane[each.key].machine_configuration
 
   node     = each.value.ip
   endpoint = each.value.ip
 
-  config_patches = []
+  config_patches = [
+    yamlencode({
+      machine = {
+        network = {
+          hostname = each.key
+          interfaces = [{
+            deviceSelector = [{
+              hardwareAddr = each.value.mac_address
+            }]
+            addresses = [each.value.ip]
+            routes = [{
+              network = "192.168.88.0/24"
+              gateway = var.gateway
+            }]
+          }]
+        }
+      }
+    }),
+  ]
 }
 
 resource "talos_machine_configuration_apply" "worker" {
@@ -105,7 +149,25 @@ resource "talos_machine_configuration_apply" "worker" {
 
   node     = each.value.ip
 
-  config_patches = []
+  config_patches = [
+    yamlencode({
+      machine = {
+        network = {
+          hostname = each.key
+          interfaces = [{
+            deviceSelector = [{
+              hardwareAddr = each.value.mac_address
+            }]
+            addresses = [each.value.ip]
+            routes = [{
+              network = "192.168.88.0/24"
+              gateway = var.gateway
+            }]
+          }]
+        }
+      }
+    })
+  ]
 }
 
 resource "talos_machine_bootstrap" "this" {

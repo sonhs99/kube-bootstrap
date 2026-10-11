@@ -12,4 +12,6 @@ locals {
   controlplane_ips = [for _, v in local.controlplanes : v.ip]
   worker_ips       = [for _, v in local.workers : v.ip]
   all_node_ips     = [for _, v in var.nodes : v.ip]
+
+  cluster_endpoint = "https://${var.cluster_endpoint_ip}:6443"
 }

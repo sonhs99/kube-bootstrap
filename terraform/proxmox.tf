@@ -55,7 +55,6 @@ resource "proxmox_virtual_environment_vm" "talos" {
       ssd          = true
     }
   }
-  
 
   cdrom {
     file_id     = "${var.iso_datastore}:iso/${proxmox_download_file.talos_image[each.value.proxmox_node].file_name}"
@@ -67,9 +66,34 @@ resource "proxmox_virtual_environment_vm" "talos" {
     mac_address = each.value.mac_address
   }
 
+  hostpci {
+    device  = "hostpci0"
+    id      = "0000:00:02.1"
+    rombar  = true
+    pcie    = true
+  }
+
   operating_system {
     type = "l26"
   }
 
   boot_order = ["scsi0", "ide3"]
+}
+
+resource "proxmox_virtual_environment_vm" "remove_iso" {
+  for_each = var.nodes
+
+  depends_on = [
+    talos_machine_configuration_apply.controlplane,
+    talos_machine_configuration_apply.worker
+  ]
+
+  name      = each.key
+  node_name = each.value.proxmox_node
+  vm_id     = each.value.vm_id
+
+  cdrom {
+    file_id     = "none"
+  }
+
 }

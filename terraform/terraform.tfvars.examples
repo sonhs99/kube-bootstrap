@@ -1,7 +1,6 @@
 proxmox_nodes = ["pve"]
 
 cluster_name     = "homelab"
-cluster_endpoint = "https://10.0.0.1:6443"
 cluster_endpoint_ip = "10.0.0.1"
 
 gateway     = "10.0.0.1"

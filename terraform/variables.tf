@@ -13,12 +13,6 @@ variable "kubernetes_version" {
   default = "v1.31.4"
 }
 
-variable "cluster_endpoint" {
-  description = "Kubernetes API endpoint. 보통 LB/VIP/FQDN 사용"
-  type        = string
-  default     = "https://k8s-api.internal.example.com:6443"
-}
-
 variable "cluster_endpoint_ip" {
   description = "Kubernetes API endpoint IP. 보통 LB/VIP/FQDN 사용"
   type        = string
