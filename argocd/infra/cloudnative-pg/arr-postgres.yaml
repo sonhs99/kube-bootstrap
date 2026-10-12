@@ -5,7 +5,7 @@ metadata:
   namespace: media
 spec:
   description: PostgreSQL cluster for the ARR stack
-  instances: 1
+  instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:17
 
   primaryUpdateStrategy: unsupervised

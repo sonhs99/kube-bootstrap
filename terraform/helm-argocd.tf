@@ -29,6 +29,62 @@ resource "helm_release" "argocd" {
         params = {
           "server.insecure" = true
         }
+        cm = {
+          "resource.exclusions" = yamlencode([
+            {
+              apiGroups = ["coordination.k8s.io"]
+              kinds     = ["Lease"]
+            },
+            {
+              apiGroups = [
+                "authentication.k8s.io",
+                "authorization.k8s.io"
+              ]
+              kinds = [
+                "SelfSubjectReview",
+                "TokenReview",
+                "LocalSubjectAccessReview",
+                "SelfSubjectAccessReview",
+                "SelfSubjectRulesReview",
+                "SubjectAccessReview"
+              ]
+            },
+            {
+              apiGroups = ["certificates.k8s.io"]
+              kinds     = ["CertificateSigningRequest"]
+            },
+            {
+              apiGroups = ["cert-manager.io"]
+              kinds     = ["CertificateRequest"]
+            },
+            {
+              apiGroups = ["cilium.io"]
+              kinds = [
+                "CiliumIdentity",
+                "CiliumEndpoint",
+                "CiliumEndpointSlice"
+              ]
+            },
+            {
+              apiGroups = [
+                "kyverno.io",
+                "reports.kyverno.io",
+                "wgpolicyk8s.io"
+              ]
+              kinds = [
+                "PolicyReport",
+                "ClusterPolicyReport",
+                "EphemeralReport",
+                "ClusterEphemeralReport",
+                "AdmissionReport",
+                "ClusterAdmissionReport",
+                "BackgroundScanReport",
+                "ClusterBackgroundScanReport",
+                "UpdateRequest"
+              ]
+            }
+          ])
+        }
       }
 
       server = {
