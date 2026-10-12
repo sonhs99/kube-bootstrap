@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aurral
+  name: droppedneedle
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/sonhs99/kube-bootstrap.git
     targetRevision: main
-    path: argocd/media/server/aurral
+    path: argocd/media/server/droppedneedle
   destination:
     server: https://kubernetes.default.svc
     namespace: media
