@@ -17,6 +17,16 @@ spec:
       - name: droppedneedle
         image: droppedneedle/droppedneedle
         env:
+        - name: PUID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: UID
+        - name: PGID
+          valueFrom:
+            secretKeyRef:
+              name: nfs-auth
+              key: GID
         - name: SLSKD_DOWNLOADS_PATH
           value: /downloads/soulseek
         volumeMounts:
@@ -43,3 +53,6 @@ spec:
       - name: media
         persistentVolumeClaim:
           claimName: nfs-media
+      - name: nfs-auth
+        secret:
+          secretName: nfs-auth
