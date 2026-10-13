@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: droppedneedle
-        image: ghcr.io/habirabbu/droppedneedle
+        image: droppedneedle/droppedneedle
         env:
         - name: SLSKD_DOWNLOADS_PATH
           value: /downloads/soulseek
